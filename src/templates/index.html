@@ -72,11 +72,8 @@
                 {include file='lessonTable.html'}
                 {else if $op=="lessonCancel"&&$isuser!=false}
                 {include file='lessonCancel.html'}
-                {else if $op=="search"}
-                {include file='search.html'}
-                {else if $op=="search_result"||$op=="search_class_result"||$op=="search_class_teacher"}
-                {include file='search.html'}
-                {include file='show_class.html'}
+                {else if $op=="show"}
+                {include file='today.html'}
                 {else}
                 <h1>選課系統吧</h1>
                 {/if}
