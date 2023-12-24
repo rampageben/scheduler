@@ -1,0 +1,46 @@
+<div>
+    <table class="table">
+        <thead>
+        <h2>未完成清單</h2>
+        <tr>
+            <th>標題</th>
+            <th>地點</th>
+            <th>起始日期(y/m/d)</th>
+            <th>起始時間</th>
+            <th>結束日期(y/m/d)</th>
+            <th>結束時間</th>
+            <th></th>
+        </tr>
+        </thead>
+        {foreach from =$thing_to_do item = thing_f}
+        <tbody>
+        <tr>
+            <td>{$thing_f.title}</td>
+            <td>{$thing_f.location}</td>
+            <td>{$thing_f.begin_date_year}/{$thing_f.begin_date_month}/{$thing_f.begin_date_day}</td>
+            <td>{$thing_f.begin_time_hour}:{$thing_f.begin_time_minute}</td>
+            <td>{$thing_f.finish_date_year}/{$thing_f.finish_date_month}/{$thing_f.finish_date_day}</td>
+            <td>{$thing_f.finish_time_hour}:{$thing_f.finish_time_minute}</td>
+            <td>
+                <!--                <form method="post" action="">-->
+                <!--                    <p>-->
+                <!--                        <label>-->
+                <!--                            <input type="checkbox" name=”state[]” value="{$thing_f.Index_schedule}">完成-->
+                <!--                        </label>-->
+                <form action="show_unfinished.php" class="form-inline" method="get">
+                    <input id="show_unfinished" name="op" type="hidden" value="show_unfinished">
+                    <input id="unfinished" name="unfinished" type="hidden" value="{$thing_f.Index_schedule}">
+                    <td>
+                        <button class="btn btn-danger" type="submit">完成</button>
+                    </td>
+                </form>
+                <!--                    </p>-->
+                <!--                </form>-->
+
+            </td>
+        </tr>
+        </tbody>
+        {/foreach}
+    </table>
+</div>
+

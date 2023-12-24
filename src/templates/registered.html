@@ -1,0 +1,29 @@
+<h1>用戶註冊</h1>
+<br>
+<form action="user.php" class="form-horizontal" id="user_form" method="POST">
+    <div class="form-group">
+        <label for="user_id">帳號</label>
+        <input class="form-control" id="user_id" name="user_id" placeholder="請輸入帳號" required type="text">
+    </div>
+    <div class="form-group">
+        <label for="user_pw">密碼</label>
+        <input class="form-control" id="user_pw" name="user_pw" placeholder="請輸入密碼" required type="password">
+    </div>
+    <div class="form-group">
+        <label for="nickname">暱稱</label>
+        <input class="form-control" id="nickname" name="nickname" placeholder="請輸入暱稱" required type="text">
+    </div>
+    <div class="form-group">
+        <label for="gmail">Email</label>
+        <input class="form-control" id="gmail" name="gmail" placeholder="abc@example.com" required type="text">
+    </div>
+
+    <div class="form-group">
+        <input id="registered_insert" name="op" type="hidden" value="registered_insert">
+        <input class="btn btn-primary" type="submit" value="註冊">
+        {if isset($msg)}
+        <b class="text-danger">●{$msg}</b>
+        {/if}
+    </div>
+
+</form>

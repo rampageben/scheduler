@@ -17,8 +17,10 @@
     <div class="form-group">
         <input id="loginout" name="op" type="hidden" value="loginout">
         <input class="btn btn-primary" type="submit" value="登入">
-        <!-- <a href="user.php?op=registered" class="btn btn-success">註冊</a>
-        <a href="user.php?op=forget_pw" class="btn btn-danger">忘記密碼</a> -->
+        <!--        改-->
+        <a class="btn btn-success" href="user.php?op=registered">註冊</a>
+        <!--        改-->
+        <!--        <a href="user.php?op=forget_pw" class="btn btn-danger">忘記密碼</a>-->
         {if isset($msg)}
         <br>
         <b class="text-danger">●{$msg}</b>
