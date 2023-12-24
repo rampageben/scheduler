@@ -1,99 +1,53 @@
 <?php
     require_once('header.php');
     date_default_timezone_set('Asia/Taipei');
-    $op = isset($_REQUEST['op']) ? filter_var($_REQUEST['op'],FILTER_SANITIZE_SPECIAL_CHARS) : 'home';
-    $journey = isset($_REQUEST['journey']) ? filter_var($_REQUEST['journey'],FILTER_SANITIZE_SPECIAL_CHARS) : '';
-    $Year = isset($_REQUEST['year']) ? filter_var($_REQUEST['year'],FILTER_SANITIZE_SPECIAL_CHARS) : '';
-    $Month = isset($_REQUEST['month']) ? filter_var($_REQUEST['month'],FILTER_SANITIZE_SPECIAL_CHARS) : '';
-    $Day = isset($_REQUEST['day']) ? filter_var($_REQUEST['day'],FILTER_SANITIZE_SPECIAL_CHARS) : '';
+    $op = isset($_REQUEST['op']) ? filter_var($_REQUEST['op'], FILTER_SANITIZE_SPECIAL_CHARS) : 'home';
+    $journey = isset($_REQUEST['journey']) ? filter_var($_REQUEST['journey'], FILTER_SANITIZE_SPECIAL_CHARS) : '';
+    $Year = isset($_REQUEST['year']) ? filter_var($_REQUEST['year'], FILTER_SANITIZE_SPECIAL_CHARS) : '';
+    $Month = isset($_REQUEST['month']) ? filter_var($_REQUEST['month'], FILTER_SANITIZE_SPECIAL_CHARS) : '';
+    $Day = isset($_REQUEST['day']) ? filter_var($_REQUEST['day'], FILTER_SANITIZE_SPECIAL_CHARS) : '';
+    $all_journey = isset($all_journey)?$all_journey:array();
+
+    // 顯示今日的年月日和時間
     $today = date('Y/m/d H:i:s');
+    echo "今天是：" . date('Y年m月d日') . "，現在時間：" . date('H時i分');
+
     $timestamp = strtotime($today);
     $dateYear = date('Y', $timestamp);
     $dateMonth = date('m', $timestamp);
     $dateDay = date('d', $timestamp);
 
-    show_schedule();
+    if ($isuser == false) {
+        $msg = '請先登入';
+    } else {
+        show_schedule();
+    }
+
     require("footer.php");
 
     function show_schedule(){
-        global $smarty, $mysqli,$journey,$op,$msg,$today,$year,$month,$day,$dateYear,$dateMonth,$dateDay;
-        $op = 'show';
-        $sql = "SELECT * FROM `dolist` WHERE `year` LIKE '%{$begin_date_year}%' "
-        $year=$mysqli->query($sql) or die("在查詢資料庫時發生錯誤,找不到查詢課程". $mysqli->error);
-        if(mysqli_num_rows($year) != 0){
-            $sql = "SELECT * FROM `dolist` WHERE ``month` LIKE '%{$begin_date_month}%'"
-            $month=$mysqli->query($sql) or die("在查詢資料庫時發生錯誤,找不到查詢課程". $mysqli->error);
-            if(mysqli_num_rows($year) != 0){
-                $sql = "SELECT * FROM `dolist` WHERE `day` LIKE '%{$begin_date_day}%' "
-                $month=$mysqli->query($sql) or die("在查詢資料庫時發生錯誤,找不到查詢課程". $mysqli->error);
-//         //改
-//             if($class_id!='' && $class_name == '' || $class_id!='' && $class_teacher == ''){
-//         //改
-//                 $sql = "SELECT * FROM `course_data` WHERE `course_id` LIKE '%{$class_id}%' ORDER BY `course_id` ASC";
-//                 $course=$mysqli->query($sql) or die("在查詢資料庫時發生錯誤,找不到查詢課程". $mysqli->error);
-//                 if (mysqli_num_rows($course) != 0) {
-//                     $i = 0;
-//                     while ($class = $course->fetch_assoc()) {
-//                         $all_class[$i] = $class;
-//                         $all_class[$i]['course_time'] = checktime($class['course_time1'],$class['course_time2'],$class['course_time3']);
-//                         $all_class[$i]['course_room'] = checkroom($class['course_room1'],$class['course_room2'],$class['course_room3']);
-//                         $all_class[$i]['course_people'] = $class['course_quotaPick'].'/'.$class['course_quota'];
-//                         $i++;
-//                     }
-//                     $smarty->assign('all_class',$all_class);
-//                     $op='search_result';
-//                 }
-//                 else{
-//                     $msg = '查無資料';
-//                 }
-//                 $smarty->assign('class_id',$class_id);
-//             }
-//             //改
-//             else if($class_name != ''&& $class_id == '' || $class_name != ''&& $class_teacher == ''){
-//             //改
-//                 $sql = "SELECT * FROM `course_data` WHERE `course_name` LIKE '%{$class_name}%' ";
-//                 $course_name=$mysqli->query($sql) or die("在查詢資料庫時發生錯誤,找不到查詢課程". $mysqli->error);
-//                 if (mysqli_num_rows($course_name) != 0) {
-//                     $i = 0;
-//                     while ($class = $course_name->fetch_assoc()) {
-//                         $all_class[$i] = $class;
-//                         $all_class[$i]['course_time'] = checktime($class['course_time1'],$class['course_time2'],$class['course_time3']);
-//                         $all_class[$i]['course_room'] = checkroom($class['course_room1'],$class['course_room2'],$class['course_room3']);
-//                         $all_class[$i]['course_people'] = $class['course_quotaPick'].'/'.$class['course_quota'];
-//                         $i++;
-//                     }
-//                     $smarty->assign('all_class',$all_class);
-//                     $op='search_class_result';
-//                 }
-//                 else{
-//                     $msg = '查無資料';
-//                 }
-//                 $smarty->assign('class_name',$class_name);
-//             }
-//             //改
-//             else if($class_teacher != '' && $class_id == '' || $class_teacher != '' && $class_name == ''){
-//             //改
-//                 $sql = "SELECT * FROM `course_data` WHERE `course_teacher` LIKE '%{$class_teacher}%' ";
-//                 $course_teacher=$mysqli->query($sql) or die("在查詢資料庫時發生錯誤,找不到查詢課程". $mysqli->error);
-//                 if (mysqli_num_rows($course_teacher) != 0) {
-//                     $i = 0;
-//                     while ($class = $course_teacher->fetch_assoc()) {
-//                         $all_class[$i] = $class;
-//                         $all_class[$i]['course_time'] = checktime($class['course_time1'],$class['course_time2'],$class['course_time3']);
-//                         $all_class[$i]['course_room'] = checkroom($class['course_room1'],$class['course_room2'],$class['course_room3']);
-//                         $all_class[$i]['course_people'] = $class['course_quotaPick'].'/'.$class['course_quota'];
-//                         $i++;
-//                     }
-//                     $smarty->assign('all_class',$all_class);
-//                     $op='search_class_teacher';
-//                 }
-//                 else{
-//                     $msg = '查無資料';
-//                 }
-//                 $smarty->assign('class_teacher',$class_teacher);
-//             }
-//         }
-//     }
+        global $smarty, $mysqli, $journey, $op, $msg, $today, $dateYear, $dateMonth, $dateDay;
+        // 查詢今日的行程
+        $sql = "SELECT * FROM `dolist` WHERE `year` = '{$dateYear}' AND `month` = '{$dateMonth}' AND `day` = '{$dateDay}'";
+        $result = $mysqli->query($sql) or die("在查詢資料庫時發生錯誤,找不到查詢課程" . $mysqli->error);
+        if(mysqli_num_rows($result) != 0){
+            $i = 0;
+            while ($schedule = $result->fetch_assoc()) {
+                $all_journey[$i] = $schedule;
+                $all_journey[$i]['time'] = checktime($class['time1'],$class['time2'],$class['time3']);
+                //$all_journey[$i]['course_room'] = checkroom($class['course_room1'],$class['course_room2'],$class['course_room3']);
+                //$all_journey[$i]['course_people'] = $class['course_quotaPick'].'/'.$class['course_quota'];
+                $i++;
+            }
+            // 將行程資料傳遞給模板
+            $smarty->assign('all_journey', $all_journey);
+        } else {
+            // 沒有行程的處理方式
+            $msg = '今天沒有行程';
+        }
+    }
+
+
     function checkroom($room1,$room2,$room3){
         $room = '';
         if($room1!=''){
