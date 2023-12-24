@@ -36,7 +36,7 @@
         </a>
         <a class="home-link" href="change.php?op=change">
             <img alt="home" src="templates/web_image/home/home.png" width="80">
-            <span class="home-text">修改事件</span>
+            <span class="home-text">刪除事件</span>
         </a>
         <a class="home-link" href="Addclass.php?op=addclass">
             <img alt="home" src="templates/web_image/home/home.png" width="80">
@@ -63,9 +63,11 @@
                 <div style="max-width: 500px;margin: auto;">
                     {include file='login.html'}
                 </div>
-                {else if $op=="change"}
+                {else if $op=="change"&& $isuser!=false}
                 {include file='change.html'}
+                {if isset($schedule)}
                 {include file='change_show.html'}
+                {/if}
                 {else}
                 <h1>選課系統吧</h1>
                 {/if}

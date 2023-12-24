@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2023-12-19 13:48:46
+/* Smarty version 3.1.34-dev-7, created on 2023-12-24 08:01:35
   from 'D:\scheduler\src\templates\index.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_65819f3ea8b738_87378620',
+  'unifunc' => 'content_6587e55f27bdd5_87271897',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c479d78eeff1408a44a3ea0d9e01e314a906cd1d' => 
     array (
       0 => 'D:\\scheduler\\src\\templates\\index.html',
-      1 => 1702993723,
+      1 => 1703404857,
       2 => 'file',
     ),
   ),
@@ -24,7 +24,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:change_show.html' => 1,
   ),
 ),false)) {
-function content_65819f3ea8b738_87378620 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6587e55f27bdd5_87271897 (Smarty_Internal_Template $_smarty_tpl) {
 ?><html>
 
 <head>
@@ -74,7 +74,7 @@ function content_65819f3ea8b738_87378620 (Smarty_Internal_Template $_smarty_tpl)
         </a>
         <a class="home-link" href="change.php?op=change">
             <img alt="home" src="templates/web_image/home/home.png" width="80">
-            <span class="home-text">修改事件</span>
+            <span class="home-text">刪除事件</span>
         </a>
         <a class="home-link" href="Addclass.php?op=addclass">
             <img alt="home" src="templates/web_image/home/home.png" width="80">
@@ -104,11 +104,13 @@ function content_65819f3ea8b738_87378620 (Smarty_Internal_Template $_smarty_tpl)
                     <?php $_smarty_tpl->_subTemplateRender('file:login.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
                 </div>
-                <?php } elseif ($_smarty_tpl->tpl_vars['op']->value == "change") {?>
+                <?php } elseif ($_smarty_tpl->tpl_vars['op']->value == "change" && $_smarty_tpl->tpl_vars['isuser']->value != false) {?>
                 <?php $_smarty_tpl->_subTemplateRender('file:change.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
-                <?php $_smarty_tpl->_subTemplateRender('file:change_show.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+                    <?php if (isset($_smarty_tpl->tpl_vars['schedule']->value)) {?>
+                    <?php $_smarty_tpl->_subTemplateRender('file:change_show.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
+                    <?php }?>
                 <?php } else { ?>
                 <h1>選課系統吧</h1>
                 <?php }?>
