@@ -34,8 +34,8 @@
             $i = 0;
             while ($schedule = $result->fetch_assoc()) {
                 $all_journey[$i] = $schedule;
-                $all_journey[$i]['time'] = checktime($class['time1'],$class['time2'],$class['time3']);
-                //$all_journey[$i]['course_room'] = checkroom($class['course_room1'],$class['course_room2'],$class['course_room3']);
+                $all_journey[$i]['begin_time'] = number2time($schedule['begin_date_year'],$schedule['begin_date_month'],$schedule['begin_date_day']);
+                $all_journey[$i]['finish_time'] = number2time($schedule['finish_date_year'],$schedule['finish_date_month'],$schedule['finish_date_day']);
                 //$all_journey[$i]['course_people'] = $class['course_quotaPick'].'/'.$class['course_quota'];
                 $i++;
             }
@@ -47,59 +47,9 @@
         }
     }
 
-
-    function checkroom($room1,$room2,$room3){
-        $room = '';
-        if($room1!=''){
-            $room =  $room.$room1;}
-        if($room2!=''){
-            $room =  $room.','.$room2;}
-        if($room3!=''){
-            $room=  $room.','.$room3;}
-        return $room;
-    }
-
-    function checktime($time1,$time2,$time3){
-        $time = '';
-        if($time1!=''){
-            $time =  $time.changetime($time1);}
-        if($time2!=''){
-            $time =  $time.','.changetime($time2);}
-        if($time3!=''){
-            $time=  $time.','.changetime($time3);}
+    function number2time($year,$month, $day, $hour, $minute){
+        $time = date("Y-m-d H:i",mktime($hour, $minute, 0, $month, $day, $year));
         return $time;
     }
-    function changetime($orgtime){
-        if($orgtime==''){
-            return '';}
-        $week = substr($orgtime,0,1);
-        $time = substr($orgtime,1,2);
-        switch($week){
-            case '1':
-                $week = '星期一';
-                break;
-            case '2':
-                $week = '星期二';
-                break;
-            case '3':
-                $week = '星期三';
-                break;
-            case '4':
-                $week = '星期四';
-                break;
-            case '5':
-                $week = '星期五';
-                break;
-            case '6':
-                $week = '星期六';
-                break;
-            case '7':
-                $week = '星期日';
-                break;
-            default:
-                $week = '';
-                break;
-        }
-        return $week.'第'.$time.'節';
-    }
+
 ?>
