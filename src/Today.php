@@ -28,6 +28,7 @@
     function show_schedule(){
         global $smarty, $mysqli, $journey, $op, $msg, $today, $dateYear, $dateMonth, $dateDay;
         // 查詢今日的行程
+        $op = 'show_Today';
         $sql = "SELECT * FROM `dolist` WHERE `year` = '{$dateYear}' AND `month` = '{$dateMonth}' AND `day` = '{$dateDay}'";
         $result = $mysqli->query($sql) or die("在查詢資料庫時發生錯誤,找不到查詢課程" . $mysqli->error);
         if(mysqli_num_rows($result) != 0){

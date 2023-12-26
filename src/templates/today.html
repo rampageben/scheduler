@@ -1,35 +1,71 @@
 <table class="table">
     <thead>
     <tr>
-        <th>課程代號</th>
-        <th>課程名稱</th>
-        <th>教授</th>
-        <th>學分</th>
-        <th>必選修</th>
-        <th>開課班級</th>
-        <th>上課時間</th>
-        <th>上課地點</th>
-        <th>人數</th>
+        <th>名稱</th>
+        <th>內容</th>
+        <th>開始時間</th>
+        <th>結束時間</th>
+        <th>地點</th>
+        <th>是否執行</th>
     </tr>
     </thead>
-    {foreach from=$all_class item=class}
+    {foreach from=$all_journey item=schedule}
     <tbody>
     <tr>
-        <td>{$class.course_id}</td>
-        <td>{$class.course_name}</td>
-        <td>{$class.course_teacher}</td>
-        <td>{$class.course_credit}</td>
-        <td>{$class.course_RE}</td>
-        <td>{$class.course_garde}</td>
-        <td>{$class.course_time}</td>
-        <td>{$class.course_room}</td>
-        <td>{$class.course_people}</td>
-        <!--        <form action="Search.php" class="form-inline" method="get">-->
-        <!--            <input id="chose_class" name="op" type="hidden" value="chose_class">-->
-        <!--            <input class="form-control" id="class_id" name="class_id" type="hidden" value="{$class_id}">-->
-        <!--            <input class="form-control" id="class_name" name="class_name" type="hidden" value="{$class_name}">-->
-        <!--        </form>-->
+        <td>{$schedule.title}</td>
+        <td>{$schedule.begin_date_time}</td>
+        <td>{$schedule.finish_date_time}</td>
+        <td>{$schedule.location}</td>
+        <td>{if $schedule.state == 1}
+            是-->
+            {else}
+            否
+            {/if}
+        </td>
     </tr>
     </tbody>
     {/foreach}
 </table>
+
+<!--<table class="table">-->
+<!--    <thead>-->
+<!--    <tr>-->
+<!--        <th>名稱</th>-->
+<!--        <th>內容</th>-->
+<!--        <th>開始時間</th>-->
+<!--        <th>結束時間</th>-->
+<!--        <th>地點</th>-->
+<!--        <th>是否執行</th>-->
+<!--        <th>刪除</th>-->
+
+<!--    </tr>-->
+<!--    </thead>-->
+<!--    {foreach from=$schedule item=event}-->
+<!--    <tbody>-->
+<!--    <tr>-->
+<!--        <td>{$event.title}</td>-->
+<!--        <td>{$event.content}</td>-->
+<!--        <td>{$event.begin_date_time}</td>-->
+<!--        <td>{$event.finish_date_time}</td>-->
+<!--        <td>{$event.location}</td>-->
+<!--        <td>{if $event.state == 1}-->
+<!--            是-->
+<!--            {else}-->
+<!--            否-->
+<!--            {/if}-->
+<!--        </td>-->
+<!--        <form action="change.php" class="form-inline" method="get">-->
+<!--            <input id="change" name="op" type="hidden" value="change">-->
+<!--            {if isset($title)}-->
+<!--            <input class="form-control" id="title" name="title" type="hidden" value="{$title}">-->
+<!--            {/if}-->
+<!--            <input id="chose_id" name="chose_id" type="hidden" value="{$event.Index_schedule}">-->
+<!--            <td>-->
+<!--                <button class="btn btn-danger" type="submit">刪除</button>-->
+<!--            </td>-->
+<!--        </form>-->
+
+<!--    </tr>-->
+<!--    </tbody>-->
+<!--    {/foreach}-->
+<!--</table>-->
