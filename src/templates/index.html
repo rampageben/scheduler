@@ -30,7 +30,7 @@
             <img alt="home" src="templates/web_image/home/home.png" width="80">
             <span class="home-text">首頁</span>
         </a>
-        <a class="home-link" href="lessonTable.php?op=lessontable">
+        <a class="home-link" href="add.php?op=add">
             <img alt="home" src="templates/web_image/home/home.png" width="80">
             <span class="home-text">新增事件</span>
         </a>
@@ -68,6 +68,8 @@
                 {if isset($schedule)}
                 {include file='change_show.html'}
                 {/if}
+                {else if $op=="add"&& $isuser!=false}
+                {include file='add.html'}
                 {else}
                 <h1>選課系統吧</h1>
                 {/if}

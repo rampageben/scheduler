@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2023-12-24 08:01:35
+/* Smarty version 3.1.34-dev-7, created on 2023-12-26 12:54:33
   from 'D:\scheduler\src\templates\index.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_6587e55f27bdd5_87271897',
+  'unifunc' => 'content_658acd092b6e29_57657532',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c479d78eeff1408a44a3ea0d9e01e314a906cd1d' => 
     array (
       0 => 'D:\\scheduler\\src\\templates\\index.html',
-      1 => 1703404857,
+      1 => 1703594670,
       2 => 'file',
     ),
   ),
@@ -22,9 +22,10 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:login.html' => 1,
     'file:change.html' => 1,
     'file:change_show.html' => 1,
+    'file:add.html' => 1,
   ),
 ),false)) {
-function content_6587e55f27bdd5_87271897 (Smarty_Internal_Template $_smarty_tpl) {
+function content_658acd092b6e29_57657532 (Smarty_Internal_Template $_smarty_tpl) {
 ?><html>
 
 <head>
@@ -68,7 +69,7 @@ function content_6587e55f27bdd5_87271897 (Smarty_Internal_Template $_smarty_tpl)
             <img alt="home" src="templates/web_image/home/home.png" width="80">
             <span class="home-text">首頁</span>
         </a>
-        <a class="home-link" href="lessonTable.php?op=lessontable">
+        <a class="home-link" href="add.php?op=add">
             <img alt="home" src="templates/web_image/home/home.png" width="80">
             <span class="home-text">新增事件</span>
         </a>
@@ -111,6 +112,9 @@ function content_6587e55f27bdd5_87271897 (Smarty_Internal_Template $_smarty_tpl)
                     <?php $_smarty_tpl->_subTemplateRender('file:change_show.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
                     <?php }?>
+                <?php } elseif ($_smarty_tpl->tpl_vars['op']->value == "add" && $_smarty_tpl->tpl_vars['isuser']->value != false) {?>
+                <?php $_smarty_tpl->_subTemplateRender('file:add.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?>
                 <?php } else { ?>
                 <h1>選課系統吧</h1>
                 <?php }?>

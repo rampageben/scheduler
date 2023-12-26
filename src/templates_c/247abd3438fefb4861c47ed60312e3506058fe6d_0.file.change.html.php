@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2023-12-19 09:40:33
+/* Smarty version 3.1.34-dev-7, created on 2023-12-26 12:54:33
   from 'D:\scheduler\src\templates\change.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_65816511b24590_26255604',
+  'unifunc' => 'content_658acd092d99f7_43683996',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '247abd3438fefb4861c47ed60312e3506058fe6d' => 
     array (
       0 => 'D:\\scheduler\\src\\templates\\change.html',
-      1 => 1702978828,
+      1 => 1703594821,
       2 => 'file',
     ),
   ),
@@ -20,8 +20,8 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_65816511b24590_26255604 (Smarty_Internal_Template $_smarty_tpl) {
-?><h2>修改</h2>
+function content_658acd092d99f7_43683996 (Smarty_Internal_Template $_smarty_tpl) {
+?><h2>刪除</h2>
 <br>
 <form action="change.php" class="form-inline" method="get" style="padding-left: 70px;">
     <input id="change" name="op" type="hidden" value="change">
