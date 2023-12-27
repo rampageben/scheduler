@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2023-12-27 14:18:54
+/* Smarty version 3.1.34-dev-7, created on 2023-12-27 15:13:52
   from 'D:\scheduler\src\templates\index.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_658c324e8eb7b5_76349119',
+  'unifunc' => 'content_658c3f306dfff4_15541093',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c479d78eeff1408a44a3ea0d9e01e314a906cd1d' => 
     array (
       0 => 'D:\\scheduler\\src\\templates\\index.html',
-      1 => 1703686685,
+      1 => 1703690022,
       2 => 'file',
     ),
   ),
@@ -27,7 +27,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:registered.html' => 1,
   ),
 ),false)) {
-function content_658c324e8eb7b5_76349119 (Smarty_Internal_Template $_smarty_tpl) {
+function content_658c3f306dfff4_15541093 (Smarty_Internal_Template $_smarty_tpl) {
 ?><html>
 
 <head>
@@ -87,7 +87,7 @@ function content_658c324e8eb7b5_76349119 (Smarty_Internal_Template $_smarty_tpl)
         <!--        改-->
         <a class="home-link" href="lessonCancel.php?op=lessonCancel">
             <img alt="home" src="templates/web_image/home/home.png" width="80">
-            <span class="home-text">退選課程</span>
+            <span class="home-text">天數顯示</span>
         </a>
 
         <div class="col-md-3 col-sm-4" id="login_frame">
