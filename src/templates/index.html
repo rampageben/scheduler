@@ -30,13 +30,13 @@
             <img alt="home" src="templates/web_image/home/home.png" width="80">
             <span class="home-text">首頁</span>
         </a>
-        <a class="home-link" href="lessonTable.php?op=lessontable">
+        <a class="home-link" href="add.php?op=add">
             <img alt="home" src="templates/web_image/home/home.png" width="80">
-            <span class="home-text">檢視課表</span>
+            <span class="home-text">新增事件</span>
         </a>
-        <a class="home-link" href="Search.php?op=search">
+        <a class="home-link" href="change.php?op=change">
             <img alt="home" src="templates/web_image/home/home.png" width="80">
-            <span class="home-text">查詢課程</span>
+            <span class="home-text">刪除事件</span>
         </a>
         <a class="home-link" href="Addclass.php?op=addclass">
             <img alt="home" src="templates/web_image/home/home.png" width="80">
@@ -63,20 +63,13 @@
                 <div style="max-width: 500px;margin: auto;">
                     {include file='login.html'}
                 </div>
-                {else if $op=="addclass"&&$isuser!=false}
-                {include file='addclass.html'}
-                {else if $op=="search_add_result" || $op=="chose_class"&&$isuser!=false}
-                {include file='addclass.html'}
-                {include file='showaddclass.html'}
-                {else if $op=="lessonTable"&&$isuser!=false}
-                {include file='lessonTable.html'}
-                {else if $op=="lessonCancel"&&$isuser!=false}
-                {include file='lessonCancel.html'}
-                {else if $op=="search"}
-                {include file='search.html'}
-                {else if $op=="search_result"||$op=="search_class_result"||$op=="search_class_teacher"}
-                {include file='search.html'}
-                {include file='show_class.html'}
+                {else if $op=="change"&& $isuser!=false}
+                {include file='change.html'}
+                {if isset($schedule)}
+                {include file='change_show.html'}
+                {/if}
+                {else if $op=="add"&& $isuser!=false}
+                {include file='add.html'}
                 {else}
                 <h1>選課系統吧</h1>
                 {/if}

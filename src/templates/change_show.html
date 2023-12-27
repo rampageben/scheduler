@@ -1,0 +1,42 @@
+<table class="table">
+    <thead>
+    <tr>
+        <th>名稱</th>
+        <th>內容</th>
+        <th>開始時間</th>
+        <th>結束時間</th>
+        <th>地點</th>
+        <th>是否執行</th>
+        <th>刪除</th>
+
+    </tr>
+    </thead>
+    {foreach from=$schedule item=event}
+    <tbody>
+    <tr>
+        <td>{$event.title}</td>
+        <td>{$event.content}</td>
+        <td>{$event.begin_date_time}</td>
+        <td>{$event.finish_date_time}</td>
+        <td>{$event.location}</td>
+        <td>{if $event.state == 1}
+            是
+            {else}
+            否
+            {/if}
+        </td>
+        <form action="change.php" class="form-inline" method="get">
+            <input id="change" name="op" type="hidden" value="change">
+            {if isset($title)}
+            <input class="form-control" id="title" name="title" type="hidden" value="{$title}">
+            {/if}
+            <input id="chose_id" name="chose_id" type="hidden" value="{$event.Index_schedule}">
+            <td>
+                <button class="btn btn-danger" type="submit">刪除</button>
+            </td>
+        </form>
+
+    </tr>
+    </tbody>
+    {/foreach}
+</table>

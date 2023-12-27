@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2023-12-18 13:46:20
+/* Smarty version 3.1.34-dev-7, created on 2023-12-27 13:40:57
   from 'D:\scheduler\src\templates\index.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_65804d2cb80db4_30642891',
+  'unifunc' => 'content_658c296960dbf0_12995176',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c479d78eeff1408a44a3ea0d9e01e314a906cd1d' => 
     array (
       0 => 'D:\\scheduler\\src\\templates\\index.html',
-      1 => 1701231384,
+      1 => 1703684450,
       2 => 'file',
     ),
   ),
@@ -20,15 +20,12 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
     'file:index_side.html' => 1,
     'file:login.html' => 1,
-    'file:addclass.html' => 2,
-    'file:showaddclass.html' => 1,
-    'file:lessonTable.html' => 1,
-    'file:lessonCancel.html' => 1,
-    'file:search.html' => 2,
-    'file:show_class.html' => 1,
+    'file:change.html' => 1,
+    'file:change_show.html' => 1,
+    'file:add.html' => 1,
   ),
 ),false)) {
-function content_65804d2cb80db4_30642891 (Smarty_Internal_Template $_smarty_tpl) {
+function content_658c296960dbf0_12995176 (Smarty_Internal_Template $_smarty_tpl) {
 ?><html>
 
 <head>
@@ -72,13 +69,13 @@ function content_65804d2cb80db4_30642891 (Smarty_Internal_Template $_smarty_tpl)
             <img alt="home" src="templates/web_image/home/home.png" width="80">
             <span class="home-text">首頁</span>
         </a>
-        <a class="home-link" href="lessonTable.php?op=lessontable">
+        <a class="home-link" href="add.php?op=add">
             <img alt="home" src="templates/web_image/home/home.png" width="80">
-            <span class="home-text">檢視課表</span>
+            <span class="home-text">新增事件</span>
         </a>
-        <a class="home-link" href="Search.php?op=search">
+        <a class="home-link" href="change.php?op=change">
             <img alt="home" src="templates/web_image/home/home.png" width="80">
-            <span class="home-text">查詢課程</span>
+            <span class="home-text">刪除事件</span>
         </a>
         <a class="home-link" href="Addclass.php?op=addclass">
             <img alt="home" src="templates/web_image/home/home.png" width="80">
@@ -108,27 +105,15 @@ function content_65804d2cb80db4_30642891 (Smarty_Internal_Template $_smarty_tpl)
                     <?php $_smarty_tpl->_subTemplateRender('file:login.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
                 </div>
-                <?php } elseif ($_smarty_tpl->tpl_vars['op']->value == "addclass" && $_smarty_tpl->tpl_vars['isuser']->value != false) {?>
-                <?php $_smarty_tpl->_subTemplateRender('file:addclass.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+                <?php } elseif ($_smarty_tpl->tpl_vars['op']->value == "change" && $_smarty_tpl->tpl_vars['isuser']->value != false) {?>
+                <?php $_smarty_tpl->_subTemplateRender('file:change.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
-                <?php } elseif ($_smarty_tpl->tpl_vars['op']->value == "search_add_result" || $_smarty_tpl->tpl_vars['op']->value == "chose_class" && $_smarty_tpl->tpl_vars['isuser']->value != false) {?>
-                <?php $_smarty_tpl->_subTemplateRender('file:addclass.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, true);
+                <?php if (isset($_smarty_tpl->tpl_vars['schedule']->value)) {?>
+                <?php $_smarty_tpl->_subTemplateRender('file:change_show.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
-                <?php $_smarty_tpl->_subTemplateRender('file:showaddclass.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
-?>
-                <?php } elseif ($_smarty_tpl->tpl_vars['op']->value == "lessonTable" && $_smarty_tpl->tpl_vars['isuser']->value != false) {?>
-                <?php $_smarty_tpl->_subTemplateRender('file:lessonTable.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
-?>
-                <?php } elseif ($_smarty_tpl->tpl_vars['op']->value == "lessonCancel" && $_smarty_tpl->tpl_vars['isuser']->value != false) {?>
-                <?php $_smarty_tpl->_subTemplateRender('file:lessonCancel.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
-?>
-                <?php } elseif ($_smarty_tpl->tpl_vars['op']->value == "search") {?>
-                <?php $_smarty_tpl->_subTemplateRender('file:search.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
-?>
-                <?php } elseif ($_smarty_tpl->tpl_vars['op']->value == "search_result" || $_smarty_tpl->tpl_vars['op']->value == "search_class_result" || $_smarty_tpl->tpl_vars['op']->value == "search_class_teacher") {?>
-                <?php $_smarty_tpl->_subTemplateRender('file:search.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, true);
-?>
-                <?php $_smarty_tpl->_subTemplateRender('file:show_class.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+                <?php }?>
+                <?php } elseif ($_smarty_tpl->tpl_vars['op']->value == "add" && $_smarty_tpl->tpl_vars['isuser']->value != false) {?>
+                <?php $_smarty_tpl->_subTemplateRender('file:add.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
                 <?php } else { ?>
                 <h1>選課系統吧</h1>
