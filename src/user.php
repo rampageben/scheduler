@@ -41,17 +41,20 @@ function registered(){
 
 }
 function registered_insert(){
-	global $mysqli,$msg;
+	global $mysqli,$msg,$smarty;
 	if (empty($_POST['user_id'])) {
-		$msg = "請輸入帳號";
+		$msgdanger = "請輸入帳號";
+		$smarty->assign('msgdanger', $msgdanger );
 		return;
 	}
 	else if (empty($_POST['user_pw'])) {
-		$msg = "請輸入密碼";
+		$msgdanger = "請輸入密碼";
+		$smarty->assign('msgdanger', $msgdanger );
 		return;
 	}
 	else if (strpos($_POST['user_id']," ")||strpos($_POST['user_pw']," ")) {
-		$msg = "帳號和密碼不可包含空白";
+		$msgdanger = "帳號和密碼不可包含空白";
+		$smarty->assign('msgdanger', $msgdanger );
 		return;
 	}
 	foreach ($_POST as $var_name => $var_val) {
@@ -61,11 +64,13 @@ function registered_insert(){
 		$result = $mysqli->query($sql) or die("在查詢資料庫時發生錯誤");
 		$user = $result->fetch_assoc();
 		if (!empty($user)) {
-			$msg = "帳號已存在";
+			$msgdanger = "帳號已存在";
+			$smarty->assign('msgdanger', $msgdanger );
 			return;
 		}
 		if(strpos($gmail,"@")==false){
-		    $msg = "請輸入正確的信箱";
+		    $msgdanger = "請輸入正確的信箱";
+		    $smarty->assign('msgdanger', $msgdanger );
 		    return;
 		}
         $user_pw = password_hash($_REQUEST['user_pw'], PASSWORD_DEFAULT);
@@ -90,7 +95,8 @@ function loginout()
     $user_id = filter_var($_REQUEST['user_id'], FILTER_SANITIZE_SPECIAL_CHARS);
     if (!empty($user_id)) {
         if ($_POST['captcha'] != $_SESSION['captcha']) {
-            $msg = "驗證碼錯誤";
+            $msgdanger = "驗證碼錯誤";
+            $smarty->assign('msgdanger', $msgdanger );
             return;
         }
         $sql = "SELECT * FROM `user` WHERE `user_id`='{$user_id}'";
@@ -102,10 +108,12 @@ function loginout()
             header("location:index.php?op=home");
             exit;
         } else {
-            $msg = "帳號或密碼錯誤";
+            $msgdanger = "帳號或密碼錯誤";
+            $smarty->assign('msgdanger', $msgdanger );
         }
     } else {
-        $msg = "請輸入帳號";
+        $msgdanger = "請輸入帳號";
+        $smarty->assign('msgdanger', $msgdanger );
     }
     return;
 }

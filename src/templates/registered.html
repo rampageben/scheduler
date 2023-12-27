@@ -1,6 +1,13 @@
 <h1>用戶註冊</h1>
 <br>
 <form action="user.php" class="form-horizontal" id="user_form" method="POST">
+    {if isset($msgdanger)}
+    <b class="text-danger">●{$msgdanger}</b>
+    {/if}
+    {if isset($msgsuccess)}
+    <b class="text-success">●{$msgsuccess}</b>
+    {/if}
+    <br>
     <div class="form-group">
         <label for="user_id">帳號</label>
         <input class="form-control" id="user_id" name="user_id" placeholder="請輸入帳號" required type="text">
