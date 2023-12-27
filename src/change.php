@@ -85,7 +85,9 @@ function delevent($chose_id){
         unset($user_list[$key]);
         $user_list = implode(",", $user_list);
         $sql = "UPDATE `user_list` SET `schedule_index` = '{$user_list}' WHERE `user_id` = '{$user_id}'";
-        $result= $mysqli->query($sql) or die("在查詢資料庫時發生錯誤,更新用戶做事清單" . $mysqli->error);
+        $result= $mysqli->query($sql) or die("在更新資料庫時發生錯誤,更新用戶做事清單" . $mysqli->error);
+        $sql = "DELETE FROM `dolist` WHERE `Index_schedule` = '{$chose_id}'";
+        $result= $mysqli->query($sql) or die("在刪除資料庫時發生錯誤,刪除做事清單" . $mysqli->error);
         $msgsuccess = '刪除成功';
         $smarty->assign('msgsuccess', $msgsuccess );
         $chose_id = '';

@@ -52,7 +52,7 @@ function addevent($event_title, $event_content, $event_location, $begin_year, $b
     $result = $result->fetch_assoc();
     $Index_schedule = $result['Index_schedule'];
     $user_id = $_SESSION['user_id'];
-    echo $user_id;
+//     echo $user_id;
     $sql = "SELECT `schedule_index` From user_list WHERE `user_id` = '{$user_id}'";
     $user_list = $mysqli->query($sql) or die("在查詢資料庫時發生錯誤,無法查詢用戶事件清單" . $mysqli->error);
     $user_list = $user_list->fetch_assoc();
