@@ -7,9 +7,13 @@ $event_location = isset($_REQUEST['event_location']) ? filter_var($_REQUEST['eve
 $begin_year = isset($_REQUEST['begin_year']) ? filter_var($_REQUEST['begin_year'], FILTER_SANITIZE_SPECIAL_CHARS) : '';
 $begin_month= isset($_REQUEST['begin_month']) ? filter_var($_REQUEST['begin_month'], FILTER_SANITIZE_SPECIAL_CHARS) : '';
 $begin_day = isset($_REQUEST['begin_day']) ? filter_var($_REQUEST['begin_day'], FILTER_SANITIZE_SPECIAL_CHARS) : '';
+$begin_hour = isset($_REQUEST['begin_hour']) ? filter_var($_REQUEST['begin_hour'], FILTER_SANITIZE_SPECIAL_CHARS) : '';
+$begin_minute = isset($_REQUEST['begin_minute']) ? filter_var($_REQUEST['begin_minute'], FILTER_SANITIZE_SPECIAL_CHARS) : '';
 $end_year = isset($_REQUEST['end_year']) ? filter_var($_REQUEST['end_year'], FILTER_SANITIZE_SPECIAL_CHARS) : '';
 $end_month= isset($_REQUEST['end_month']) ? filter_var($_REQUEST['end_month'], FILTER_SANITIZE_SPECIAL_CHARS) : '';
 $end_day = isset($_REQUEST['end_day']) ? filter_var($_REQUEST['end_day'], FILTER_SANITIZE_SPECIAL_CHARS) : '';
+$end_hour = isset($_REQUEST['end_hour']) ? filter_var($_REQUEST['end_hour'], FILTER_SANITIZE_SPECIAL_CHARS) : '';
+$end_minute = isset($_REQUEST['end_minute']) ? filter_var($_REQUEST['end_minute'], FILTER_SANITIZE_SPECIAL_CHARS) : '';
 if ($isuser == false) {
     $msg = '請先登入';
 }else{
