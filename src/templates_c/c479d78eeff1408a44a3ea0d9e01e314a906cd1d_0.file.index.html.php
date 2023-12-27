@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2023-12-26 12:54:33
+/* Smarty version 3.1.34-dev-7, created on 2023-12-27 13:40:57
   from 'D:\scheduler\src\templates\index.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_658acd092b6e29_57657532',
+  'unifunc' => 'content_658c296960dbf0_12995176',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c479d78eeff1408a44a3ea0d9e01e314a906cd1d' => 
     array (
       0 => 'D:\\scheduler\\src\\templates\\index.html',
-      1 => 1703594670,
+      1 => 1703684450,
       2 => 'file',
     ),
   ),
@@ -25,7 +25,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:add.html' => 1,
   ),
 ),false)) {
-function content_658acd092b6e29_57657532 (Smarty_Internal_Template $_smarty_tpl) {
+function content_658c296960dbf0_12995176 (Smarty_Internal_Template $_smarty_tpl) {
 ?><html>
 
 <head>
@@ -108,10 +108,10 @@ function content_658acd092b6e29_57657532 (Smarty_Internal_Template $_smarty_tpl)
                 <?php } elseif ($_smarty_tpl->tpl_vars['op']->value == "change" && $_smarty_tpl->tpl_vars['isuser']->value != false) {?>
                 <?php $_smarty_tpl->_subTemplateRender('file:change.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
-                    <?php if (isset($_smarty_tpl->tpl_vars['schedule']->value)) {?>
-                    <?php $_smarty_tpl->_subTemplateRender('file:change_show.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+                <?php if (isset($_smarty_tpl->tpl_vars['schedule']->value)) {?>
+                <?php $_smarty_tpl->_subTemplateRender('file:change_show.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
-                    <?php }?>
+                <?php }?>
                 <?php } elseif ($_smarty_tpl->tpl_vars['op']->value == "add" && $_smarty_tpl->tpl_vars['isuser']->value != false) {?>
                 <?php $_smarty_tpl->_subTemplateRender('file:add.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>

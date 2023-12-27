@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2023-12-26 14:46:14
+/* Smarty version 3.1.34-dev-7, created on 2023-12-27 13:44:00
   from 'D:\scheduler\src\templates\add.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_658ae736871842_53462827',
+  'unifunc' => 'content_658c2a20e9c479_00607418',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ef19334c5019cb9efafebabf2f6e9f804fd0391d' => 
     array (
       0 => 'D:\\scheduler\\src\\templates\\add.html',
-      1 => 1703601971,
+      1 => 1703684637,
       2 => 'file',
     ),
   ),
@@ -20,22 +20,33 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_658ae736871842_53462827 (Smarty_Internal_Template $_smarty_tpl) {
+function content_658c2a20e9c479_00607418 (Smarty_Internal_Template $_smarty_tpl) {
 ?><h1>新增</h1>
 <br>
-
-<form action="add.php" method="POST" class="form-horizontal" id="user_form">
+<form action="add.php" class="form-horizontal" id="user_form" method="POST">
+    <?php if (isset($_smarty_tpl->tpl_vars['msgdanger']->value)) {?>
+    <b class="text-danger">●<?php echo $_smarty_tpl->tpl_vars['msgdanger']->value;?>
+</b>
+    <?php }?>
+    <?php if (isset($_smarty_tpl->tpl_vars['msgsuccess']->value)) {?>
+    <b class="text-success">●<?php echo $_smarty_tpl->tpl_vars['msgsuccess']->value;?>
+</b>
+    <?php }?>
+    <br>
     <div class="form-group">
         <label for="event_title">事件名稱</label>
-        <input type="text" class="form-control" name="event_title" id="event_title" placeholder="請輸入事件名稱" required>
+        <input class="form-control" id="event_title" name="event_title" placeholder="請輸入事件名稱" required
+               type="text">
     </div>
     <div class="form-group">
         <label for="event_content">事件內容</label>
-        <input type="text" class="form-control" name="event_content" id="event_content" placeholder="請輸入事件內容" required>
+        <input class="form-control" id="event_content" name="event_content" placeholder="請輸入事件內容" required
+               type="text">
     </div>
     <div class="form-group">
         <label for="event_location">事件地點</label>
-        <input type="text" class="form-control" name="event_location" id="event_location" placeholder="請輸入事件地點" required>
+        <input class="form-control" id="event_location" name="event_location" placeholder="請輸入事件地點" required
+               type="text">
     </div>
 
 
@@ -96,7 +107,7 @@ function content_658ae736871842_53462827 (Smarty_Internal_Template $_smarty_tpl)
             }
         }
 
-        window.onload = function() {
+        window.onload = function () {
             var beginYearSelect = document.getElementById("begin_year");
             var beginMonthSelect = document.getElementById("begin_month");
             var beginDaySelect = document.getElementById("begin_day");
@@ -108,8 +119,6 @@ function content_658ae736871842_53462827 (Smarty_Internal_Template $_smarty_tpl)
             var endDaySelect = document.getElementById("end_day");
             var endHourSelect = document.getElementById("end_hour");
             var endMinuteSelect = document.getElementById("end_minute");
-
-
 
 
             for (var i = 2050; i >= 2000; i--) {
@@ -155,45 +164,45 @@ function content_658ae736871842_53462827 (Smarty_Internal_Template $_smarty_tpl)
             endMinuteSelect.value = oneHourLater.getMinutes();
 
 
-            beginYearSelect.onchange = function() {
-                updateDays('begin_year', 'begin_month', 'begin_day',1);
-                updateDateTime();
-            };
-
-            beginMonthSelect.onchange = function() {
+            beginYearSelect.onchange = function () {
                 updateDays('begin_year', 'begin_month', 'begin_day', 1);
                 updateDateTime();
             };
-            beginDaySelect.onchange = function() {
+
+            beginMonthSelect.onchange = function () {
+                updateDays('begin_year', 'begin_month', 'begin_day', 1);
+                updateDateTime();
+            };
+            beginDaySelect.onchange = function () {
                 updateDateTime();
             };
 
-            beginHourSelect.onchange = function() {
+            beginHourSelect.onchange = function () {
                 updateDateTime();
             };
-            beginMinuteSelect.onchange = function() {
+            beginMinuteSelect.onchange = function () {
                 updateDateTime();
             };
 
-            endYearSelect.onchange = function() {
+            endYearSelect.onchange = function () {
                 updateDays('end_year', 'end_month', 'end_day', 1);
                 updateDateTime();
             };
 
-            endMonthSelect.onchange = function() {
+            endMonthSelect.onchange = function () {
                 updateDays('end_year', 'end_month', 'end_day', 1);
                 updateDateTime();
             };
 
-            endDaySelect.onchange = function() {
+            endDaySelect.onchange = function () {
                 updateDateTime();
             };
 
-            endHourSelect.onchange = function() {
+            endHourSelect.onchange = function () {
                 updateDateTime();
             };
 
-            endMinuteSelect.onchange = function() {
+            endMinuteSelect.onchange = function () {
                 updateDateTime();
             };
         };
@@ -207,7 +216,7 @@ function content_658ae736871842_53462827 (Smarty_Internal_Template $_smarty_tpl)
     <select id="begin_month" name="begin_month"></select>
 
     <label for="begin_day">日:</label>
-    <select id="begin_day" name="begin_month"></select>
+    <select id="begin_day" name="begin_day"></select>
 
     <label for="begin_hour">小時:</label>
     <select id="begin_hour" name="begin_hour"></select>
@@ -218,13 +227,13 @@ function content_658ae736871842_53462827 (Smarty_Internal_Template $_smarty_tpl)
 
 
     <label for="end_year">選擇結束 年:</label>
-    <select id="end_year" name="finish_year"></select>
+    <select id="end_year" name="end_year"></select>
 
     <label for="end_month">月:</label>
     <select id="end_month" name="end_month"></select>
 
     <label for="end_day">日:</label>
-    <select id="end_day" name="end_month"></select>
+    <select id="end_day" name="end_day"></select>
 
     <label for="end_hour">小時:</label>
     <select id="end_hour" name="end_hour"></select>
@@ -233,21 +242,10 @@ function content_658ae736871842_53462827 (Smarty_Internal_Template $_smarty_tpl)
     <select id="end_minute" name="end_minute"></select>
 
 
-
-
     <div class="form-group">
-        <input type="hidden" name="op" value="addevent" id="addevent">
-        <input type="submit" class="btn btn-primary" value="新增">
-        <?php if (isset($_smarty_tpl->tpl_vars['msgdanger']->value)) {?>
-        <br>
-        <b class="text-danger">●<?php echo $_smarty_tpl->tpl_vars['msgdanger']->value;?>
-</b>
-        <?php }?>
-        <?php if (isset($_smarty_tpl->tpl_vars['msgsuccess']->value)) {?>
-        <br>
-        <b class="text-success">●<?php echo $_smarty_tpl->tpl_vars['msgsuccess']->value;?>
-</b>
-        <?php }?>
+        <input id="addevent" name="op" type="hidden" value="addevent">
+        <input class="btn btn-primary" type="submit" value="新增">
+
     </div>
 
 </form>

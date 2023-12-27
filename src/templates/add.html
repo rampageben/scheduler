@@ -1,7 +1,13 @@
 <h1>新增</h1>
 <br>
-
 <form action="add.php" class="form-horizontal" id="user_form" method="POST">
+    {if isset($msgdanger)}
+    <b class="text-danger">●{$msgdanger}</b>
+    {/if}
+    {if isset($msgsuccess)}
+    <b class="text-success">●{$msgsuccess}</b>
+    {/if}
+    <br>
     <div class="form-group">
         <label for="event_title">事件名稱</label>
         <input class="form-control" id="event_title" name="event_title" placeholder="請輸入事件名稱" required
@@ -183,7 +189,7 @@
     <select id="begin_month" name="begin_month"></select>
 
     <label for="begin_day">日:</label>
-    <select id="begin_day" name="begin_month"></select>
+    <select id="begin_day" name="begin_day"></select>
 
     <label for="begin_hour">小時:</label>
     <select id="begin_hour" name="begin_hour"></select>
@@ -194,13 +200,13 @@
 
 
     <label for="end_year">選擇結束 年:</label>
-    <select id="end_year" name="finish_year"></select>
+    <select id="end_year" name="end_year"></select>
 
     <label for="end_month">月:</label>
     <select id="end_month" name="end_month"></select>
 
     <label for="end_day">日:</label>
-    <select id="end_day" name="end_month"></select>
+    <select id="end_day" name="end_day"></select>
 
     <label for="end_hour">小時:</label>
     <select id="end_hour" name="end_hour"></select>
@@ -212,14 +218,7 @@
     <div class="form-group">
         <input id="addevent" name="op" type="hidden" value="addevent">
         <input class="btn btn-primary" type="submit" value="新增">
-        {if isset($msgdanger)}
-        <br>
-        <b class="text-danger">●{$msgdanger}</b>
-        {/if}
-        {if isset($msgsuccess)}
-        <br>
-        <b class="text-success">●{$msgsuccess}</b>
-        {/if}
+
     </div>
 
 </form>
