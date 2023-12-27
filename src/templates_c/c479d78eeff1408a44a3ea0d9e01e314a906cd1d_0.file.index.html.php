@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2023-12-27 13:40:57
+/* Smarty version 3.1.34-dev-7, created on 2023-12-27 14:18:54
   from 'D:\scheduler\src\templates\index.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_658c296960dbf0_12995176',
+  'unifunc' => 'content_658c324e8eb7b5_76349119',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c479d78eeff1408a44a3ea0d9e01e314a906cd1d' => 
     array (
       0 => 'D:\\scheduler\\src\\templates\\index.html',
-      1 => 1703684450,
+      1 => 1703686685,
       2 => 'file',
     ),
   ),
@@ -23,9 +23,11 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:change.html' => 1,
     'file:change_show.html' => 1,
     'file:add.html' => 1,
+    'file:show_schedule_unfinished.html' => 1,
+    'file:registered.html' => 1,
   ),
 ),false)) {
-function content_658c296960dbf0_12995176 (Smarty_Internal_Template $_smarty_tpl) {
+function content_658c324e8eb7b5_76349119 (Smarty_Internal_Template $_smarty_tpl) {
 ?><html>
 
 <head>
@@ -77,10 +79,12 @@ function content_658c296960dbf0_12995176 (Smarty_Internal_Template $_smarty_tpl)
             <img alt="home" src="templates/web_image/home/home.png" width="80">
             <span class="home-text">刪除事件</span>
         </a>
-        <a class="home-link" href="Addclass.php?op=addclass">
+        <!--        改-->
+        <a class="home-link" href="show_unfinished.php?op=show_unfinished">
             <img alt="home" src="templates/web_image/home/home.png" width="80">
-            <span class="home-text">加選課程</span>
+            <span class="home-text">未完成行程</span>
         </a>
+        <!--        改-->
         <a class="home-link" href="lessonCancel.php?op=lessonCancel">
             <img alt="home" src="templates/web_image/home/home.png" width="80">
             <span class="home-text">退選課程</span>
@@ -115,6 +119,16 @@ function content_658c296960dbf0_12995176 (Smarty_Internal_Template $_smarty_tpl)
                 <?php } elseif ($_smarty_tpl->tpl_vars['op']->value == "add" && $_smarty_tpl->tpl_vars['isuser']->value != false) {?>
                 <?php $_smarty_tpl->_subTemplateRender('file:add.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
+                <!--                改-->
+                <?php } elseif ($_smarty_tpl->tpl_vars['op']->value == "show_unfinished" && $_smarty_tpl->tpl_vars['isuser']->value != false) {?>
+                <?php $_smarty_tpl->_subTemplateRender('file:show_schedule_unfinished.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?>
+                <?php } elseif ($_smarty_tpl->tpl_vars['op']->value == "registered" || $_smarty_tpl->tpl_vars['op']->value == "registered_insert") {?>
+                <div style="max-width: 500px;margin: auto;">
+                    <?php $_smarty_tpl->_subTemplateRender('file:registered.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?>
+                </div>
+                <!--                改-->
                 <?php } else { ?>
                 <h1>選課系統吧</h1>
                 <?php }?>

@@ -23,6 +23,8 @@ switch ($op) {
     	break;
     case 'registered_insert':
     	registered_insert();
+    	$op = 'registered';
+        $smarty->assign('op', $op );
     	break;
 
 // 改
@@ -61,6 +63,10 @@ function registered_insert(){
 		if (!empty($user)) {
 			$msg = "帳號已存在";
 			return;
+		}
+		if(strpos($gmail,"@")==false){
+		    $msg = "請輸入正確的信箱";
+		    return;
 		}
         $user_pw = password_hash($_REQUEST['user_pw'], PASSWORD_DEFAULT);
         $sql = "INSERT INTO `user` (`user_id`,`user_pw`,`gmail`,`nickname`) VALUES ('{$user_id}','{$user_pw}','{$gmail}','{$nickname}')";
