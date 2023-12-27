@@ -3,22 +3,26 @@
         <thead>
         <h2>未完成清單</h2>
         <tr>
+            <!--            改-->
             <th>標題</th>
             <th>地點</th>
             <th>起始時間</th>
             <th>結束時間</th>
-            <th></th>
+            <!--            改-->
         </tr>
         </thead>
         {foreach from =$thing_to_do item = thing_f}
         <tbody>
         <tr>
+            <!--            改-->
             <td>{$thing_f.title}</td>
             <td>{$thing_f.location}</td>
             <td>{$thing_f.begin_date_time}</td>
             <td>{$thing_f.finish_date_time}</td>
+            <!--            改-->
             <td>
-                <form action="show_unfinished.php" class="form-inline" method="get">
+
+            <form action="show_unfinished.php" class="form-inline" method="get">
                     <input id="show_unfinished" name="op" type="hidden" value="show_unfinished">
                     <input id="unfinished" name="unfinished" type="hidden" value="{$thing_f.Index_schedule}">
                     <td>

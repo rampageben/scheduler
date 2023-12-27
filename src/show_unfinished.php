@@ -35,10 +35,10 @@
                        $thing_to_do[$i]['title'] = $to_do['title'];
                        $thing_to_do[$i]['Index_schedule'] = $to_do['Index_schedule'];
                        $thing_to_do[$i]['location'] = $to_do['location'];
-
+//                        改
                        $thing_to_do[$i]['begin_date_time'] = number2time($to_do['begin_date_year'],$to_do['begin_date_month'],$to_do['begin_date_day'],$to_do['begin_time_hour'],$to_do['begin_time_minute']);
                        $thing_to_do[$i]['finish_date_time'] = number2time($to_do['finish_date_year'],$to_do['finish_date_month'],$to_do['finish_date_day'],$to_do['finish_time_hour'],$to_do['finish_time_minute']);
-
+//                         改
                     }
                 }
             }
@@ -65,9 +65,10 @@
             }
         }
 	}
-
+// 改
 	function number2time($year,$month, $day, $hour, $minute){
         $time = date("Y-m-d H:i",mktime($hour, $minute, 0, $month, $day, $year));
         return $time;
     }
+//     改
 ?>
