@@ -2,49 +2,46 @@
     require_once('header.php');
     date_default_timezone_set('Asia/Taipei');
     $op = isset($_REQUEST['op']) ? filter_var($_REQUEST['op'], FILTER_SANITIZE_SPECIAL_CHARS) : 'home';
-    $journey = isset($_REQUEST['journey']) ? filter_var($_REQUEST['journey'], FILTER_SANITIZE_SPECIAL_CHARS) : '';
-    $Year = isset($_REQUEST['year']) ? filter_var($_REQUEST['year'], FILTER_SANITIZE_SPECIAL_CHARS) : '';
-    $Month = isset($_REQUEST['month']) ? filter_var($_REQUEST['month'], FILTER_SANITIZE_SPECIAL_CHARS) : '';
-    $Day = isset($_REQUEST['day']) ? filter_var($_REQUEST['day'], FILTER_SANITIZE_SPECIAL_CHARS) : '';
-    $all_journey = isset($all_journey)?$all_journey:array();
+    $user_id = isset($_REQUEST['user_id']) ? filter_var($_REQUEST['user_id'], FILTER_SANITIZE_SPECIAL_CHARS) : '';
 
     // 顯示今日的年月日和時間
-    $today = date('Y/m/d H:i:s');
-    echo "今天是：" . date('Y年m月d日') . "，現在時間：" . date('H時i分');
-
-    $timestamp = strtotime($today);
-    $dateYear = date('Y', $timestamp);
-    $dateMonth = date('m', $timestamp);
-    $dateDay = date('d', $timestamp);
+    $today = date('Y/m/d');
 
     if ($isuser == false) {
-        $msg = '請先登入';
-    } else {
+         $msg = '請先登入';
+    }else {
         show_schedule();
     }
-
     require("footer.php");
 
     function show_schedule(){
-        global $smarty, $mysqli, $journey, $op, $msg, $today, $dateYear, $dateMonth, $dateDay;
+        global $smarty, $mysqli, $op, $schedule, $msg, $today, $dateYear, $dateMonth, $dateDay,$user_id;
         // 查詢今日的行程
         $op = 'show_Today';
-        $sql = "SELECT * FROM `dolist` WHERE `year` = '{$dateYear}' AND `month` = '{$dateMonth}' AND `day` = '{$dateDay}'";
-        $result = $mysqli->query($sql) or die("在查詢資料庫時發生錯誤,找不到查詢課程" . $mysqli->error);
-        if(mysqli_num_rows($result) != 0){
-            $i = 0;
-            while ($schedule = $result->fetch_assoc()) {
-                $all_journey[$i] = $schedule;
-                $all_journey[$i]['begin_time'] = number2time($schedule['begin_date_year'],$schedule['begin_date_month'],$schedule['begin_date_day']);
-                $all_journey[$i]['finish_time'] = number2time($schedule['finish_date_year'],$schedule['finish_date_month'],$schedule['finish_date_day']);
-                //$all_journey[$i]['course_people'] = $class['course_quotaPick'].'/'.$class['course_quota'];
-                $i++;
+        $user_id = $_SESSION['user_id'];
+        $sql = "SELECT `schedule_index` FROM `user_list` WHERE `user_id` = '{$user_id}'";
+        $result= $mysqli->query($sql) or die("在查詢資料庫時發生錯誤,找不到用戶做事清單" . $mysqli->error);
+        $user_schedule = $result->fetch_assoc();
+        $user_schedule = explode(",",$user_schedule['schedule_index']);
+        $k = 0;
+
+        for($i = 0;$i<count($user_schedule);$i++){
+            $sql = "SELECT * FROM `dolist` WHERE `Index_schedule` = '{$user_schedule[$i]}'";
+            $do = $mysqli->query($sql) or die("在查詢資料時發生錯誤".$mysqli->error);
+            $list = $do->fetch_assoc();
+            //echo number1time($list['begin_date_year'],$list['begin_date_month'],$list['begin_date_day']);
+            if($today == number1time($list['begin_date_year'],$list['begin_date_month'],$list['begin_date_day'])){
+                $schedule[$k] = $list;
+                $schedule[$k]['title'] = $list['title'];
+                $schedule[$k]['content'] = $list['content'];
+                $schedule[$k]['location'] = $list['location'];                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ['location'];
+                $schedule[$k]['begin_date_time'] = number2time($list['begin_date_year'],$list['begin_date_month'],$list['begin_date_day'],$list['begin_time_hour'],$list['begin_time_minute']);
+                $schedule[$k]['finish_date_time'] = number2time($list['finish_date_year'],$list['finish_date_month'],$list['finish_date_day'],$list['finish_time_hour'],$list['finish_time_minute']);
+                $k++;
             }
-            // 將行程資料傳遞給模板
-            $smarty->assign('all_journey', $all_journey);
-        } else {
-            // 沒有行程的處理方式
-            $msg = '今天沒有行程';
+        }
+        if(isset($schedule)){
+            $smarty->assign('schedule',$schedule);
         }
     }
 
@@ -52,5 +49,8 @@
         $time = date("Y-m-d H:i",mktime($hour, $minute, 0, $month, $day, $year));
         return $time;
     }
-
+    function number1time($year,$month, $day){
+        $time = date("Y/m/d",mktime(0,0,0,$month, $day, $year));
+        return $time;
+    }
 ?>

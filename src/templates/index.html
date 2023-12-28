@@ -34,7 +34,7 @@
             <img alt="home" src="templates/web_image/home/home.png" width="80">
             <span class="home-text">檢視課表</span>
         </a>
-        <a class="home-link" href="Today.php?op=search">
+        <a class="home-link" href="Today.php?op=show_Today">
             <img alt="home" src="templates/web_image/home/home.png" width="80">
             <span class="home-text">顯示今日行程</span>
         </a>
@@ -72,7 +72,7 @@
                 {include file='lessonTable.html'}
                 {else if $op=="lessonCancel"&&$isuser!=false}
                 {include file='lessonCancel.html'}
-                {else if $op=="show_Today"}
+                {else if $op=="show_Today"&&$isuser!=false}
                 {include file='today.html'}
                 {else}
                 <h1>選課系統吧</h1>
