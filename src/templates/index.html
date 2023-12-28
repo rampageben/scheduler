@@ -38,17 +38,16 @@
             <img alt="home" src="templates/web_image/home/home.png" width="80">
             <span class="home-text">查詢課程</span>
         </a>
-        <!--        改-->
         <a class="home-link" href="show_unfinished.php?op=show_unfinished">
             <img alt="home" src="templates/web_image/home/home.png" width="80">
             <span class="home-text">未完成行程</span>
         </a>
         <!--        改-->
-        <a class="home-link" href="lessonCancel.php?op=lessonCancel">
+        <a class="home-link" href="show_by_time.php?op=search_by_time">
             <img alt="home" src="templates/web_image/home/home.png" width="80">
-            <span class="home-text">天數顯示</span>
+            <span class="home-text">依時間顯示行程</span>
         </a>
-
+        <!--        改-->
         <div class="col-md-3 col-sm-4" id="login_frame">
             {if $op!="login"&&$op!="registered"&&$op!="loginout"}
             {include file='index_side.html'}
@@ -66,13 +65,15 @@
                     {include file='login.html'}
                 </div>
                 <!--                改-->
+                {else if $op=="search_by_time"&&$isuser!=false}
+                {include file='search_by_time.html'}
+                <!--                改-->
                 {else if $op=="show_unfinished"&&$isuser!=false}
                 {include file='show_schedule_unfinished.html'}
                 {else if $op=="registered"||$op=="registered_insert"}
                 <div style="max-width: 500px;margin: auto;">
                     {include file='registered.html'}
                 </div>
-                <!--                改-->
                 {else}
                 <h1>選課系統吧</h1>
                 {/if}
