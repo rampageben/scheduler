@@ -24,6 +24,14 @@
             否
             {/if}
         </td>
+        <form action="Today.php" class="form-inline" method="get">
+            <input id="show_unfinished" name="op" type="hidden" value="show_unfinished">
+            <input id="unfinished" name="unfinished" type="hidden" value="{$event.Index_schedule}">
+            <td>
+                <button class="btn btn-danger" type="submit">完成</button>
+            </td>
+        </form>
+        </td>
     </tr>
     </tbody>
     {/foreach}
