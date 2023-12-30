@@ -39,7 +39,7 @@ function addevent($event_title, $event_content, $event_location, $begin_year, $b
     }
     $begin_date = number2time($begin_year,$begin_month,$begin_day,$begin_hour,$begin_minute);
     $end_date = number2time($end_year,$end_month,$end_day,$end_hour,$end_minute);
-    if($begin_date >= $end_date){
+    if($begin_date > $end_date){
         //echo 'Please check your begin date and end date!';
         $msgdanger = 'Please check your begin date and end date!';
         $smarty->assign('msgdanger', $msgdanger );
