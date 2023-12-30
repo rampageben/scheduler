@@ -71,8 +71,5 @@
         $time = date("Y-m-d H:i",mktime($hour, $minute, 0, $month, $day, $year));
         return $time;
     }
-    function number1time($year,$month, $day){
-            $time = date("Y/m/d",mktime(0,0,0,$month, $day, $year));
-            return $time;
-    }
+
 ?>
