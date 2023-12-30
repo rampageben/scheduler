@@ -1,0 +1,41 @@
+{if isset($schedule)}
+<table class="table">
+    <thead>
+    <tr>
+        <th>名稱</th>
+        <th>內容</th>
+        <th>開始時間</th>
+        <th>結束時間</th>
+        <th>地點</th>
+        <th>是否完成</th>
+    </tr>
+    </thead>
+    {foreach from=$schedule item=event}
+    <tbody>
+    <tr>
+        <td>{$event.title}</td>
+        <td>{$event.content}</td>
+        <td>{$event.location}</td>
+        <td>{$event.begin_date_time}</td>
+        <td>{$event.finish_date_time}</td>
+        <td>{if $event.state == 1}
+            是
+            {else}
+            否
+            {/if}
+        </td>
+        <form action="Today.php" class="form-inline" method="get">
+            <input id="show_unfinished" name="op" type="hidden" value="show_unfinished">
+            <input id="unfinished" name="unfinished" type="hidden" value="{$event.Index_schedule}">
+            <td>
+                <button class="btn btn-danger" type="submit">完成</button>
+            </td>
+        </form>
+        </td>
+    </tr>
+    </tbody>
+    {/foreach}
+</table>
+{else}
+    <h2>今日無行程</h2>
+{/if}
