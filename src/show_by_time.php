@@ -29,7 +29,7 @@
         $user_list = $result['schedule_index'];
         $user_list = splitStringToArray($user_list);
         $begin_date = number2time($begin_year,$begin_month,$begin_day,$begin_hour,$begin_minute);
-
+        $k = 0;
         for ($i = 0; $i < count($user_list); $i++) {
             $sql = "SELECT * FROM `dolist` WHERE `Index_schedule` = '{$user_list[$i]}'";
             $result= $mysqli->query($sql) or die("在查詢資料庫時發生錯誤,找不到做事清單" . $mysqli->error);
@@ -38,21 +38,27 @@
 
 
             if($begin_date_time >= $begin_date){
-                $show_result[$i]['title'] = $result['title'];
-                $show_result[$i]['Index_schedule'] = $result['Index_schedule'];
-                $show_result[$i]['title'] = $result['title'];
-                $show_result[$i]['location'] = $result['location'];
-                $show_result[$i]['content'] = $result['content'];
-                $show_result[$i]['begin_date_time'] = number2time($result['begin_date_year'],$result['begin_date_month'],$result['begin_date_day'],$result['begin_time_hour'],$result['begin_time_minute']);
-                $show_result[$i]['finish_date_time'] = number2time($result['finish_date_year'],$result['finish_date_month'],$result['finish_date_day'],$result['finish_time_hour'],$result['finish_time_minute']);
+                $show_result[$k]['title'] = $result['title'];
+                $show_result[$k]['Index_schedule'] = $result['Index_schedule'];
+                $show_result[$k]['title'] = $result['title'];
+                $show_result[$k]['location'] = $result['location'];
+                $show_result[$k]['content'] = $result['content'];
+                $show_result[$k]['begin_date_time'] = number2time($result['begin_date_year'],$result['begin_date_month'],$result['begin_date_day'],$result['begin_time_hour'],$result['begin_time_minute']);
+                $show_result[$k]['finish_date_time'] = number2time($result['finish_date_year'],$result['finish_date_month'],$result['finish_date_day'],$result['finish_time_hour'],$result['finish_time_minute']);
                 if($result['state'] == 1){
-                    $show_result[$i]['state'] = '完成';
+                    $show_result[$k]['state'] = '完成';
                 }else{
-                    $show_result[$i]['state'] = '未完成';
+                    $show_result[$k]['state'] = '未完成';
                 }
+                $k++;
             }
         }
-        $smarty->assign('show_result',$show_result);
+        if(isset($show_result)){
+            $smarty->assign('show_result',$show_result);
+        }else{
+            $msg = '查無資料';
+            $smarty->assign('msg',$msg);
+        }
     }
 
     function splitStringToArray($inputString) {
@@ -64,5 +70,9 @@
     function number2time($year,$month, $day, $hour, $minute){
         $time = date("Y-m-d H:i",mktime($hour, $minute, 0, $month, $day, $year));
         return $time;
+    }
+    function number1time($year,$month, $day){
+            $time = date("Y/m/d",mktime(0,0,0,$month, $day, $year));
+            return $time;
     }
 ?>

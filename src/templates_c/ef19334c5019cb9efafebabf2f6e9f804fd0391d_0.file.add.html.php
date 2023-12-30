@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2023-12-27 13:44:00
+/* Smarty version 3.1.34-dev-7, created on 2023-12-26 14:46:14
   from 'D:\scheduler\src\templates\add.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_658c2a20e9c479_00607418',
+  'unifunc' => 'content_658ae736871842_53462827',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ef19334c5019cb9efafebabf2f6e9f804fd0391d' => 
     array (
       0 => 'D:\\scheduler\\src\\templates\\add.html',
-      1 => 1703684637,
+      1 => 1703601971,
       2 => 'file',
     ),
   ),
@@ -20,19 +20,11 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_658c2a20e9c479_00607418 (Smarty_Internal_Template $_smarty_tpl) {
+function content_658ae736871842_53462827 (Smarty_Internal_Template $_smarty_tpl) {
 ?><h1>新增</h1>
 <br>
-<form action="add.php" class="form-horizontal" id="user_form" method="POST">
-    <?php if (isset($_smarty_tpl->tpl_vars['msgdanger']->value)) {?>
-    <b class="text-danger">●<?php echo $_smarty_tpl->tpl_vars['msgdanger']->value;?>
-</b>
-    <?php }?>
-    <?php if (isset($_smarty_tpl->tpl_vars['msgsuccess']->value)) {?>
-    <b class="text-success">●<?php echo $_smarty_tpl->tpl_vars['msgsuccess']->value;?>
-</b>
-    <?php }?>
-    <br>
+
+<form action="add.php" method="POST" class="form-horizontal" id="user_form">
     <div class="form-group">
         <label for="event_title">事件名稱</label>
         <input class="form-control" id="event_title" name="event_title" placeholder="請輸入事件名稱" required
@@ -243,9 +235,18 @@ function content_658c2a20e9c479_00607418 (Smarty_Internal_Template $_smarty_tpl)
 
 
     <div class="form-group">
-        <input id="addevent" name="op" type="hidden" value="addevent">
-        <input class="btn btn-primary" type="submit" value="新增">
-
+        <input type="hidden" name="op" value="addevent" id="addevent">
+        <input type="submit" class="btn btn-primary" value="新增">
+        <?php if (isset($_smarty_tpl->tpl_vars['msgdanger']->value)) {?>
+        <br>
+        <b class="text-danger">●<?php echo $_smarty_tpl->tpl_vars['msgdanger']->value;?>
+</b>
+        <?php }?>
+        <?php if (isset($_smarty_tpl->tpl_vars['msgsuccess']->value)) {?>
+        <br>
+        <b class="text-success">●<?php echo $_smarty_tpl->tpl_vars['msgsuccess']->value;?>
+</b>
+        <?php }?>
     </div>
 
 </form>

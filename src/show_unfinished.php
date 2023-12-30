@@ -24,8 +24,6 @@
         if(mysqli_num_rows($result) != 0){
             $user_schedule = $result->fetch_assoc();
             $user_schedule = explode(",",$user_schedule['schedule_index']);
-
-
             for($i = 0;$i<count($user_schedule);$i++){
                 if($user_schedule[$i] != ''){
                     $sql = "SELECT * FROM `dolist` WHERE `Index_schedule` LIKE '%{$user_schedule[$i]}%' ";
