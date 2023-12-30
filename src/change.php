@@ -1,5 +1,6 @@
 <?php
 require_once('header.php');
+
 $op = isset($_REQUEST['op']) ? filter_var($_REQUEST['op'], FILTER_SANITIZE_SPECIAL_CHARS) : 'home';
 $title = isset($_REQUEST['title']) ? filter_var($_REQUEST['title'], FILTER_SANITIZE_SPECIAL_CHARS) : '';
 $chose_id = isset($_REQUEST['chose_id']) ? filter_var($_REQUEST['chose_id'], FILTER_SANITIZE_SPECIAL_CHARS) : '';
@@ -40,7 +41,7 @@ function show_search(){
                                                $result['begin_date_day'],$result['begin_time_hour'],$result['begin_time_minute']);
         if($today < $begin_date_time){
             if($title != ''){
-                if(strpos($result['title'], $title) !== false){
+                if(strpos($result['title'], $title) != false){
                     $schedule[$k] = $result;
                     $schedule[$k]['begin_date_time'] = number2time($result['begin_date_year'],$result['begin_date_month'],
                                                     $result['begin_date_day'],$result['begin_time_hour'],$result['begin_time_minute']);
@@ -56,7 +57,6 @@ function show_search(){
                                                   $result['finish_date_day'],$result['finish_time_hour'],$result['finish_time_minute']);
                 $k++;
             }
-
         }
     }
     if(isset($title)){

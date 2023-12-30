@@ -6,6 +6,7 @@ $smarty = new Smarty;
 $isadmin = false;
 $isuser = false;
 $msg = "";
+date_default_timezone_set('Asia/Taipei');
 if (isset($_SESSION['user_id'])) {
     $isuser = true;
     if (in_array($_SESSION['user_id'], $admin_array)) {
