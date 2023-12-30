@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2023-12-30 06:24:10
+/* Smarty version 3.1.34-dev-7, created on 2023-12-30 07:40:47
   from 'D:\scheduler\src\templates\index.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_658fb78ad8f062_10930761',
+  'unifunc' => 'content_658fc97f13cfb3_97681186',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c479d78eeff1408a44a3ea0d9e01e314a906cd1d' => 
     array (
       0 => 'D:\\scheduler\\src\\templates\\index.html',
-      1 => 1703917440,
+      1 => 1703922045,
       2 => 'file',
     ),
   ),
@@ -26,9 +26,10 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:search_by_time.html' => 1,
     'file:show_schedule_unfinished.html' => 1,
     'file:registered.html' => 1,
+    'file:today.html' => 1,
   ),
 ),false)) {
-function content_658fb78ad8f062_10930761 (Smarty_Internal_Template $_smarty_tpl) {
+function content_658fc97f13cfb3_97681186 (Smarty_Internal_Template $_smarty_tpl) {
 ?><html>
 
 <head>
@@ -68,10 +69,10 @@ function content_658fb78ad8f062_10930761 (Smarty_Internal_Template $_smarty_tpl)
         <a href="index.php?op=home">
             <img alt="logo" height="200" src="templates/web_image/home/lemon.png" width="200">
         </a>
-        <a class="home-link" href="index.php?op=home">
-            <img alt="home" src="templates/web_image/home/home.png" width="80">
-            <span class="home-text">首頁</span>
-        </a>
+<!--        <a class="home-link" href="index.php?op=home">-->
+<!--            <img alt="home" src="templates/web_image/home/home.png" width="80">-->
+<!--            <span class="home-text">首頁</span>-->
+<!--        </a>-->
         <a class="home-link" href="add.php?op=add">
             <img alt="home" src="templates/web_image/home/home.png" width="80">
             <span class="home-text">新增事件</span>
@@ -89,7 +90,10 @@ function content_658fb78ad8f062_10930761 (Smarty_Internal_Template $_smarty_tpl)
             <img alt="home" src="templates/web_image/home/home.png" width="80">
             <span class="home-text">依時間顯示行程</span>
         </a>
-        <!--        改-->
+        <a class="home-link" href="Today.php?op=show_Today">
+            <img alt="home" src="templates/web_image/home/home.png" width="80">
+            <span class="home-text">顯示今日行程</span>
+        </a>
         <div class="col-md-3 col-sm-4" id="login_frame">
             <?php if ($_smarty_tpl->tpl_vars['op']->value != "login" && $_smarty_tpl->tpl_vars['op']->value != "registered" && $_smarty_tpl->tpl_vars['op']->value != "loginout") {?>
             <?php $_smarty_tpl->_subTemplateRender('file:index_side.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
@@ -112,10 +116,10 @@ function content_658fb78ad8f062_10930761 (Smarty_Internal_Template $_smarty_tpl)
                 <?php } elseif ($_smarty_tpl->tpl_vars['op']->value == "change" && $_smarty_tpl->tpl_vars['isuser']->value != false) {?>
                 <?php $_smarty_tpl->_subTemplateRender('file:change.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
-                <?php if (isset($_smarty_tpl->tpl_vars['schedule']->value)) {?>
-                <?php $_smarty_tpl->_subTemplateRender('file:change_show.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+                    <?php if (isset($_smarty_tpl->tpl_vars['schedule']->value)) {?>
+                    <?php $_smarty_tpl->_subTemplateRender('file:change_show.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
-                <?php }?>
+                    <?php }?>
                 <?php } elseif ($_smarty_tpl->tpl_vars['op']->value == "add" && $_smarty_tpl->tpl_vars['isuser']->value != false) {?>
                 <?php $_smarty_tpl->_subTemplateRender('file:add.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
@@ -125,13 +129,20 @@ function content_658fb78ad8f062_10930761 (Smarty_Internal_Template $_smarty_tpl)
 ?>
                 <!--                改-->
                 <?php } elseif ($_smarty_tpl->tpl_vars['op']->value == "show_unfinished" && $_smarty_tpl->tpl_vars['isuser']->value != false) {?>
-                <?php $_smarty_tpl->_subTemplateRender('file:show_schedule_unfinished.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+                    <?php if (isset($_smarty_tpl->tpl_vars['thing_to_do']->value)) {?>
+                        <?php if ($_smarty_tpl->tpl_vars['thing_to_do']->value != '') {?>
+                        <?php $_smarty_tpl->_subTemplateRender('file:show_schedule_unfinished.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
+                        <?php }?>
+                    <?php }?>
                 <?php } elseif ($_smarty_tpl->tpl_vars['op']->value == "registered" || $_smarty_tpl->tpl_vars['op']->value == "registered_insert") {?>
                 <div style="max-width: 500px;margin: auto;">
                     <?php $_smarty_tpl->_subTemplateRender('file:registered.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
                 </div>
+                <?php } elseif ($_smarty_tpl->tpl_vars['op']->value == "show_Today" && $_smarty_tpl->tpl_vars['isuser']->value != false) {?>
+                <?php $_smarty_tpl->_subTemplateRender('file:today.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?>
                 <?php } else { ?>
                 <h1>選課系統吧</h1>
                 <?php }?>

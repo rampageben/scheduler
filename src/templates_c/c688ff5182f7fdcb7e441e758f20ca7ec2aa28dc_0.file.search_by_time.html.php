@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2023-12-30 06:24:10
+/* Smarty version 3.1.34-dev-7, created on 2023-12-30 06:52:42
   from 'D:\scheduler\src\templates\search_by_time.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_658fb78adbc917_33192883',
+  'unifunc' => 'content_658fbe3ae58466_23953653',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c688ff5182f7fdcb7e441e758f20ca7ec2aa28dc' => 
     array (
       0 => 'D:\\scheduler\\src\\templates\\search_by_time.html',
-      1 => 1703917431,
+      1 => 1703919144,
       2 => 'file',
     ),
   ),
@@ -20,8 +20,8 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_658fb78adbc917_33192883 (Smarty_Internal_Template $_smarty_tpl) {
-?><h1>依時間搜尋</h1>
+function content_658fbe3ae58466_23953653 (Smarty_Internal_Template $_smarty_tpl) {
+?><h2>依時間搜尋</h2>
 <br>
 <form action="show_by_time.php" class="form-horizontal" id="user_form" method="POST">
 

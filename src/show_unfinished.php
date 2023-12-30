@@ -5,13 +5,14 @@
     $unfinished = isset($_REQUEST['unfinished']) ? filter_var($_REQUEST['unfinished'],FILTER_SANITIZE_SPECIAL_CHARS) : '';
 
     if($isuser==false){
-            $msg = '請先登入';
-        }else{
-            show_schedule_unfinished();
-            if($unfinished !=''){
-                check_finished($unfinished);
-            }
-        }
+        $msg = '請先登入';
+    }else if($unfinished !=''){
+        check_finished($unfinished);
+        $op = 'show_unfinished';
+        $smarty->assign('op',$op);
+    }else{
+        show_schedule_unfinished();
+    }
 	require("footer.php");
 
 	function show_schedule_unfinished(){
@@ -20,36 +21,42 @@
         $user_id = $_SESSION['user_id'];
         $sql = "SELECT * FROM `user_list` WHERE `user_id` LIKE '%{$user_id}%'";
         $result = $mysqli->query($sql) or die("在查詢用戶時發生錯誤".$mysqli->error);
+        $user_schedule = $result->fetch_assoc();
+        $user_schedule = explode(",",$user_schedule['schedule_index']);
+        $k = 0;
 
-        if(mysqli_num_rows($result) != 0){
-            $user_schedule = $result->fetch_assoc();
-            $user_schedule = explode(",",$user_schedule['schedule_index']);
-            for($i = 0;$i<count($user_schedule);$i++){
-                if($user_schedule[$i] != ''){
-                    $sql = "SELECT * FROM `dolist` WHERE `Index_schedule` LIKE '%{$user_schedule[$i]}%' ";
-                    $todo = $mysqli->query($sql) or die("在查詢資料時發生錯誤".$mysqli->error);
-                    $to_do = $todo->fetch_assoc();
-                    if($to_do['state'] == 0){
-                       $thing_to_do[$i]['title'] = $to_do['title'];
-                       $thing_to_do[$i]['Index_schedule'] = $to_do['Index_schedule'];
-                       $thing_to_do[$i]['location'] = $to_do['location'];
-                       $thing_to_do[$i]['content'] = $to_do['content'];
-//                        改
-                       $thing_to_do[$i]['begin_date_time'] = number2time($to_do['begin_date_year'],$to_do['begin_date_month'],$to_do['begin_date_day'],$to_do['begin_time_hour'],$to_do['begin_time_minute']);
-                       $thing_to_do[$i]['finish_date_time'] = number2time($to_do['finish_date_year'],$to_do['finish_date_month'],$to_do['finish_date_day'],$to_do['finish_time_hour'],$to_do['finish_time_minute']);
-//                         改
-                    }
-                }
+        for($i = 0;$i<count($user_schedule);$i++){
+            $sql = "SELECT * FROM `dolist` WHERE `Index_schedule` = '{$user_schedule[$i]}' ";
+            $todo = $mysqli->query($sql) or die("在查詢資料時發生錯誤".$mysqli->error);
+            $to_do = $todo->fetch_assoc();
+            if($to_do['state'] == 0){
+               $thing_to_do[$k]['title'] = $to_do['title'];
+               $thing_to_do[$k]['Index_schedule'] = $to_do['Index_schedule'];
+               $thing_to_do[$k]['location'] = $to_do['location'];
+               $thing_to_do[$k]['content'] = $to_do['content'];
+               $thing_to_do[$k]['begin_date_time'] = number2time($to_do['begin_date_year'],$to_do['begin_date_month'],$to_do['begin_date_day'],$to_do['begin_time_hour'],$to_do['begin_time_minute']);
+               $thing_to_do[$k]['finish_date_time'] = number2time($to_do['finish_date_year'],$to_do['finish_date_month'],$to_do['finish_date_day'],$to_do['finish_time_hour'],$to_do['finish_time_minute']);
+              $k++;
             }
+
+        }
+
+        if(isset($thing_to_do)){
             $smarty->assign('thing_to_do',$thing_to_do);
-            }else{
-                $msg = '查無資料';
+            unset($thing_to_do);
+        }else{
+            if(isset($thing_to_do)){
+                $thing_to_do = '';
+                $smarty->assign('thing_to_do',$thing_to_do);
             }
+            $msg = '沒有待辦事項';
+        }
+        echo '{$thing_to_do}';
 	}
 
 	function check_finished($unfinished){
 	    global $smarty, $mysqli,$op,$msg;
-	    $op = 'show_unfinished';
+	    $op = 'show_unfinished_schedule';
         $user_id = $_SESSION['user_id'];
         $sql = "SELECT `schedule_index` FROM `user_list` WHERE `user_id` = '{$user_id}'";
         $schedule_index =$mysqli->query($sql) or die("在查詢資料庫時發生錯誤,找不到用戶資料". $mysqli->error);
@@ -63,6 +70,7 @@
                 $mysqli->query($sql) or die("在查詢資料庫時發生錯誤,更新狀態". $mysqli->error);
             }
         }
+        show_schedule_unfinished();
 	}
 // 改
 	function number2time($year,$month, $day, $hour, $minute){

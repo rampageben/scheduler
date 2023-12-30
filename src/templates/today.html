@@ -8,6 +8,7 @@
         <th>結束時間</th>
         <th>地點</th>
         <th>是否完成</th>
+        <th>完成切換</th>
     </tr>
     </thead>
     {foreach from=$schedule item=event}
@@ -24,12 +25,11 @@
             否
             {/if}
         </td>
+        <td>
         <form action="Today.php" class="form-inline" method="get">
-            <input id="show_unfinished" name="op" type="hidden" value="show_unfinished">
+            <input id="show_unfinished" name="op" type="hidden" value="show_today_unfinished">
             <input id="unfinished" name="unfinished" type="hidden" value="{$event.Index_schedule}">
-            <td>
-                <button class="btn btn-danger" type="submit">完成</button>
-            </td>
+            <button class="btn btn-danger" type="submit">切換</button>
         </form>
         </td>
     </tr>

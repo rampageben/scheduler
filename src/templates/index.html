@@ -26,10 +26,10 @@
         <a href="index.php?op=home">
             <img alt="logo" height="200" src="templates/web_image/home/lemon.png" width="200">
         </a>
-        <a class="home-link" href="index.php?op=home">
-            <img alt="home" src="templates/web_image/home/home.png" width="80">
-            <span class="home-text">首頁</span>
-        </a>
+        <!--        <a class="home-link" href="index.php?op=home">-->
+        <!--            <img alt="home" src="templates/web_image/home/home.png" width="80">-->
+        <!--            <span class="home-text">首頁</span>-->
+        <!--        </a>-->
         <a class="home-link" href="add.php?op=add">
             <img alt="home" src="templates/web_image/home/home.png" width="80">
             <span class="home-text">新增事件</span>
@@ -79,7 +79,11 @@
                 {include file='search_by_time.html'}
                 <!--                改-->
                 {else if $op=="show_unfinished"&&$isuser!=false}
+                {if isset($thing_to_do)}
+                {if $thing_to_do != ''}
                 {include file='show_schedule_unfinished.html'}
+                {/if}
+                {/if}
                 {else if $op=="registered"||$op=="registered_insert"}
                 <div style="max-width: 500px;margin: auto;">
                     {include file='registered.html'}

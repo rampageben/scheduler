@@ -12,8 +12,11 @@
          $msg = '請先登入';
     }else {
         show_schedule();
-        if($unfinished !=''){
+        if($unfinished != ''){
             check_finished($unfinished);
+            show_schedule();
+            $op = 'show_Today';
+            $smarty->assign('op',$op);
         }
     }
     require("footer.php");
@@ -34,7 +37,7 @@
             $do = $mysqli->query($sql) or die("在查詢資料時發生錯誤".$mysqli->error);
             $list = $do->fetch_assoc();
             //echo number1time($list['begin_date_year'],$list['begin_date_month'],$list['begin_date_day']);
-            //if($today == number1time($list['begin_date_year'],$list['begin_date_month'],$list['begin_date_day'])){
+            if($today == number1time($list['begin_date_year'],$list['begin_date_month'],$list['begin_date_day'])){
                 $schedule[$k] = $list;
                 $schedule[$k]['title'] = $list['title'];
                 $schedule[$k]['content'] = $list['content'];
@@ -42,7 +45,7 @@
                 $schedule[$k]['begin_date_time'] = number2time($list['begin_date_year'],$list['begin_date_month'],$list['begin_date_day'],$list['begin_time_hour'],$list['begin_time_minute']);
                 $schedule[$k]['finish_date_time'] = number2time($list['finish_date_year'],$list['finish_date_month'],$list['finish_date_day'],$list['finish_time_hour'],$list['finish_time_minute']);
                 $k++;
-            //}
+            }
         }
         if(isset($schedule)){
             $smarty->assign('schedule',$schedule);
@@ -51,20 +54,29 @@
 
     function check_finished($unfinished){
         global $smarty, $mysqli,$op,$msg;
-        $op = 'show_unfinished';
+        $op = 'show_today_unfinished';
         $user_id = $_SESSION['user_id'];
         $sql = "SELECT `schedule_index` FROM `user_list` WHERE `user_id` = '{$user_id}'";
         $schedule_index =$mysqli->query($sql) or die("在查詢資料庫時發生錯誤,找不到用戶資料". $mysqli->error);
         $schedule_index = $schedule_index->fetch_assoc();
         $schedule_index = $schedule_index['schedule_index'];
         $users_schedule = explode(",",$schedule_index);
-        $one = 1;
         for($i = 0;$i<count($users_schedule);$i++){
             if($unfinished == $users_schedule[$i]){
-                $sql = "UPDATE `dolist` SET `state` = 1 WHERE `Index_schedule` = '{$users_schedule[$i]}'";
-                $mysqli->query($sql) or die("在查詢資料庫時發生錯誤,更新狀態". $mysqli->error);
+                $sql = "SELECT `state` FROM `dolist` WHERE `Index_schedule` = '{$users_schedule[$i]}'";
+                $state = $mysqli->query($sql) or die("在查詢資料庫時發生錯誤,找不到事件資料". $mysqli->error);
+                $state = $state->fetch_assoc();
+                $state = $state['state'];
+                if($state == 0){
+                   $state = 1;
+                }else{
+                   $state = 0;
+                }
+                $sql = "UPDATE `dolist` SET `state` = '{$state}' WHERE `Index_schedule` = '{$users_schedule[$i]}'";
+                $mysqli->query($sql) or die("在更新資料庫時發生錯誤,更新事件狀態". $mysqli->error);
             }
         }
+
     }
 
     function number2time($year,$month, $day, $hour, $minute){
