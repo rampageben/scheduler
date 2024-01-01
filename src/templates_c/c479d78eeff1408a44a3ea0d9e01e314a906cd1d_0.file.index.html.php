@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2023-12-30 20:05:28
+/* Smarty version 3.1.34-dev-7, created on 2024-01-01 22:13:55
   from 'D:\scheduler\src\templates\index.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_659007889febc2_91155342',
+  'unifunc' => 'content_6592c8a3789a54_29686132',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c479d78eeff1408a44a3ea0d9e01e314a906cd1d' => 
     array (
       0 => 'D:\\scheduler\\src\\templates\\index.html',
-      1 => 1703937788,
+      1 => 1704118421,
       2 => 'file',
     ),
   ),
@@ -29,7 +29,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:today.html' => 1,
   ),
 ),false)) {
-function content_659007889febc2_91155342 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6592c8a3789a54_29686132 (Smarty_Internal_Template $_smarty_tpl) {
 ?><html>
 
 <head>
@@ -73,6 +73,10 @@ function content_659007889febc2_91155342 (Smarty_Internal_Template $_smarty_tpl)
         <!--            <img alt="home" src="templates/web_image/home/home.png" width="80">-->
         <!--            <span class="home-text">首頁</span>-->
         <!--        </a>-->
+        <a class="home-link" href="Today.php?op=show_Today">
+            <img alt="home" src="templates/web_image/home/home.png" width="80">
+            <span class="home-text">顯示今日行程</span>
+        </a>
         <a class="home-link" href="add.php?op=add">
             <img alt="home" src="templates/web_image/home/home.png" width="80">
             <span class="home-text">新增事件</span>
@@ -90,10 +94,69 @@ function content_659007889febc2_91155342 (Smarty_Internal_Template $_smarty_tpl)
             <img alt="home" src="templates/web_image/home/home.png" width="80">
             <span class="home-text">依時間顯示行程</span>
         </a>
-        <a class="home-link" href="Today.php?op=show_Today">
-            <img alt="home" src="templates/web_image/home/home.png" width="80">
-            <span class="home-text">顯示今日行程</span>
-        </a>
+
+        <?php echo '<script'; ?>
+>
+            const daysOfWeek = ['sun', 'mon', 'tus', 'wed', 'thu', 'fri', 'sat'];
+            const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL',
+                'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+            const $ = (id) => document.getElementById(id);
+            const zeroPadding = (num) => String(num).padStart(2, '0');
+            function clock(){
+                const today = new Date();
+                const h = today.getHours();
+                const m = today.getMinutes();
+                const s = today.getSeconds();
+                const ampm = h >= 12 ? 'PM' : 'AM';
+                const day = today.getDay();
+                const date = today.getDate();
+                const month = today.getMonth();
+                const year = today.getFullYear();
+                $('hours').textContent = zeroPadding(h);
+                $('min').textContent = zeroPadding(m);
+                $('sec').textContent = zeroPadding(s);
+                $('ampm').textContent = ampm;
+                $(daysOfWeek.at(day-1)).classList.remove('active');
+                $(daysOfWeek[day]).classList.add('active');
+                $('year').innerHTML = year;
+                $('month').innerHTML = months[month];
+                $('day').innerHTML = zeroPadding(date);
+            }
+            setInterval(clock, 400);
+        <?php echo '</script'; ?>
+>
+
+        <div class = "clock">
+            <div class = "inside">
+                <div class = "days-of-week">
+                    <span id ="sun" class = "active">SUN</span>
+                    <span id ="mon">MON</span>
+                    <span id ="tus">TUS</span>
+                    <span id ="wed">WED</span>
+                    <span id ="thu">THU</span>
+                    <span id ="fri">FRI</span>
+                    <span id ="sat">SAT</span>
+                </div>
+                <br>
+                <div class ="time">
+                    <span id = "hours">01</span>
+                    :
+                    <span id = "min">01</span>
+                    :
+                    <span id = "sec">01</span>
+                    <span id = "ampm">AM</span>
+                </div>
+                <div class = "date">
+                    <span class = "icon">
+                        <img src="https://codetheworld.io/wp-content/uploads/2023/11/eYxgJJX_icon_cal.png" alt="calendar icon">
+                    </span>
+                   <span id ="year">2023</span>
+                    <span id="month">JAN</span>
+                    <span id="day">01</span>
+                </div>
+            </div>
+        </div>
+
         <div class="col-md-3 col-sm-4" id="login_frame">
             <?php if ($_smarty_tpl->tpl_vars['op']->value != "login" && $_smarty_tpl->tpl_vars['op']->value != "registered" && $_smarty_tpl->tpl_vars['op']->value != "loginout") {?>
             <?php $_smarty_tpl->_subTemplateRender('file:index_side.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
@@ -107,7 +170,7 @@ function content_659007889febc2_91155342 (Smarty_Internal_Template $_smarty_tpl)
 </b>
                 <?php }?>
                 <?php if ($_smarty_tpl->tpl_vars['op']->value == "home") {?>
-                <h1>選課系統</h1>
+                <h1>蜂蜜檸檬行事曆</h1>
                 <?php } elseif ($_smarty_tpl->tpl_vars['op']->value == "login" || $_smarty_tpl->tpl_vars['op']->value == "loginout") {?>
                 <div style="max-width: 500px;margin: auto;">
                     <?php $_smarty_tpl->_subTemplateRender('file:login.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
@@ -144,7 +207,7 @@ function content_659007889febc2_91155342 (Smarty_Internal_Template $_smarty_tpl)
                 <?php $_smarty_tpl->_subTemplateRender('file:today.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
                 <?php } else { ?>
-                <h1>選課系統吧</h1>
+                <h1>蜂蜜檸檬行事曆</h1>
                 <?php }?>
             </div>
         </div>

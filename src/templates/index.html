@@ -52,6 +52,69 @@
             <span class="home-text">依時間顯示行程</span>
         </a>
 
+        <script>
+            const daysOfWeek = ['sun', 'mon', 'tus', 'wed', 'thu', 'fri', 'sat'];
+            const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL',
+                'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+            const $ = (id) => document.getElementById(id);
+            const zeroPadding = (num) => String(num).padStart(2, '0');
+
+            function clock() {
+                const today = new Date();
+                const h = today.getHours();
+                const m = today.getMinutes();
+                const s = today.getSeconds();
+                const ampm = h >= 12 ? 'PM' : 'AM';
+                const day = today.getDay();
+                const date = today.getDate();
+                const month = today.getMonth();
+                const year = today.getFullYear();
+                $('hours').textContent = zeroPadding(h);
+                $('min').textContent = zeroPadding(m);
+                $('sec').textContent = zeroPadding(s);
+                $('ampm').textContent = ampm;
+                $(daysOfWeek.at(day - 1)).classList.remove('active');
+                $(daysOfWeek[day]).classList.add('active');
+                $('year').innerHTML = year;
+                $('month').innerHTML = months[month];
+                $('day').innerHTML = zeroPadding(date);
+            }
+
+            setInterval(clock, 400);
+        </script>
+
+        <div class="clock">
+            <div class="inside">
+                <div class="days-of-week">
+                    <span class="active" id="sun">SUN</span>
+                    <span id="mon">MON</span>
+                    <span id="tus">TUS</span>
+                    <span id="wed">WED</span>
+                    <span id="thu">THU</span>
+                    <span id="fri">FRI</span>
+                    <span id="sat">SAT</span>
+                </div>
+                <br>
+                <div class="time">
+                    <span id="hours">01</span>
+                    :
+                    <span id="min">01</span>
+                    :
+                    <span id="sec">01</span>
+                    <span id="ampm">AM</span>
+                </div>
+                <div class="date">
+                    <span class="icon">
+                        <img alt="calendar icon"
+                             src="https://codetheworld.io/wp-content/uploads/2023/11/eYxgJJX_icon_cal.png">
+                    </span>
+                    <span id="year">2023</span>
+                    <span id="month">JAN</span>
+                    <span id="day">01</span>
+                </div>
+            </div>
+        </div>
+
         <div class="col-md-3 col-sm-4" id="login_frame">
             {if $op!="login"&&$op!="registered"&&$op!="loginout"}
             {include file='index_side.html'}
