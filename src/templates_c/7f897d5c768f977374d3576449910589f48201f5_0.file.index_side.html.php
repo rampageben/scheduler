@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2023-12-27 14:28:19
+/* Smarty version 3.1.34-dev-7, created on 2024-01-01 22:41:12
   from 'D:\scheduler\src\templates\index_side.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_658c3483a22554_74573940',
+  'unifunc' => 'content_6592cf0809ae91_60238786',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '7f897d5c768f977374d3576449910589f48201f5' => 
     array (
       0 => 'D:\\scheduler\\src\\templates\\index_side.html',
-      1 => 1703687282,
+      1 => 1704120065,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_658c3483a22554_74573940 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6592cf0809ae91_60238786 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="panel panel-default" id='panel'>
     <div class="panel-heading" id="panel-heading"></div>
     <div class="panel-body" id="panel-body">

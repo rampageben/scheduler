@@ -17,7 +17,7 @@ switch ($op) {
         exit;
         break;
 
-// 改
+
     case 'registered':
     	registered($user_number);
     	break;

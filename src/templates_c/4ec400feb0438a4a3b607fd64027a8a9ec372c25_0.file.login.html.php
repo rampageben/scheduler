@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2023-12-27 14:38:05
+/* Smarty version 3.1.34-dev-7, created on 2024-01-01 22:37:55
   from 'D:\scheduler\src\templates\login.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_658c36cdcf4044_18947700',
+  'unifunc' => 'content_6592ce430f5e52_06587007',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '4ec400feb0438a4a3b607fd64027a8a9ec372c25' => 
     array (
       0 => 'D:\\scheduler\\src\\templates\\login.html',
-      1 => 1703687846,
+      1 => 1704119422,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_658c36cdcf4044_18947700 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6592ce430f5e52_06587007 (Smarty_Internal_Template $_smarty_tpl) {
 ?><h2>登入</h2>
 <br>
 <form action="user.php" class="form-horizontal" id="login_form" method="POST" role="form">

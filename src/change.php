@@ -39,9 +39,10 @@ function show_search(){
         $result = $result->fetch_assoc();
         $begin_date_time= number2time($result['begin_date_year'],$result['begin_date_month'],
                                                $result['begin_date_day'],$result['begin_time_hour'],$result['begin_time_minute']);
+
         if($today < $begin_date_time){
             if($title != ''){
-                if(strpos($result['title'], $title) != false){
+                if(strpos($result['title'], $title) !== false){
                     $schedule[$k] = $result;
                     $schedule[$k]['begin_date_time'] = number2time($result['begin_date_year'],$result['begin_date_month'],
                                                     $result['begin_date_day'],$result['begin_time_hour'],$result['begin_time_minute']);
