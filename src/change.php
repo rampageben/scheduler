@@ -78,6 +78,12 @@ function show_search(){
     if(isset($schedule)){
         $smarty->assign('schedule', $schedule);
     }else{
+        if(isset($schedule)){
+        unset($schedule);
+        }
+        if(isset($title)){
+        unset($title);
+        }
         $msgdanger = '查無資料';
         $smarty->assign('msgdanger', $msgdanger );
     }
