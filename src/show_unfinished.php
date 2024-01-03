@@ -22,6 +22,10 @@
         $sql = "SELECT * FROM `user_list` WHERE `user_id` LIKE '%{$user_id}%'";
         $result = $mysqli->query($sql) or die("在查詢用戶時發生錯誤".$mysqli->error);
         $user_schedule = $result->fetch_assoc();
+        if($user_schedule['schedule_index'] == ''){
+        $msg = '沒有待辦事項';
+                    return;
+        }
         $user_schedule = explode(",",$user_schedule['schedule_index']);
         $k = 0;
 
@@ -51,7 +55,7 @@
             }
             $msg = '沒有待辦事項';
         }
-        echo '{$thing_to_do}';
+//         echo '{$thing_to_do}';
 	}
 
 	function check_finished($unfinished){

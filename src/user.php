@@ -75,7 +75,9 @@ function registered_insert(){
 		}
         $user_pw = password_hash($_REQUEST['user_pw'], PASSWORD_DEFAULT);
         $sql = "INSERT INTO `user` (`user_id`,`user_pw`,`gmail`,`nickname`) VALUES ('{$user_id}','{$user_pw}','{$gmail}','{$nickname}')";
-	    $mysqli->query($sql) or die("在查詢資料庫時發生錯誤");
+	    $mysqli->query($sql) or die("在加入資料庫時發生錯誤");
+	    $spl = "INSERT INTO `user_list` (`user_id`) VALUES ('{$user_id}')";
+        $mysqli->query($spl) or die("在加入user_list資料庫時發生錯誤");
 		$user_number = $mysqli->insert_id;
 		$_SESSION['user_id'] = $user_id;
 		header("location:index.php?op=home");

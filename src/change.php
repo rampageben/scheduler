@@ -12,6 +12,9 @@ if ($isuser == false) {
     show_search();
     if($chose_id!=''){
         delevent($chose_id);
+        show_search();
+         $op = 'change';
+        $smarty->assign('op',$op);
     }
 }
 
@@ -29,6 +32,11 @@ function show_search(){
     $sql = "SELECT * FROM `user_list` WHERE `user_id` = '{$user_id}'";
     $result= $mysqli->query($sql) or die("在查詢資料庫時發生錯誤,找不到用戶做事清單" . $mysqli->error);
     $result = $result->fetch_assoc();
+    if($result['schedule_index'] == ''){
+        $msgdanger = '查無資料';
+        $smarty->assign('msgdanger', $msgdanger );
+        return;
+    }
     $user_list = $result['schedule_index'];
     $user_list = splitStringToArray($user_list);
     $k = 0;
@@ -39,6 +47,8 @@ function show_search(){
         $sql = "SELECT * FROM `dolist` WHERE `Index_schedule` = '{$user_list[$i]}'";
         $result= $mysqli->query($sql) or die("在查詢資料庫時發生錯誤,找不到做事清單" . $mysqli->error);
         $result = $result->fetch_assoc();
+//         echo $user_list[$i];
+//         echo " ";
         $begin_date_time= number2time($result['begin_date_year'],$result['begin_date_month'],
                                                $result['begin_date_day'],$result['begin_time_hour'],$result['begin_time_minute']);
 
@@ -94,7 +104,7 @@ function delevent($chose_id){
         $msgsuccess = '刪除成功';
         $smarty->assign('msgsuccess', $msgsuccess );
         $chose_id = '';
-        show_search();
+
     }else{
         $msgdanger = '刪除失敗';
         $smarty->assign('msgdanger', $msgdanger );

@@ -57,7 +57,14 @@ function addevent($event_title, $event_content, $event_location, $begin_year, $b
     $user_list = $mysqli->query($sql) or die("在查詢資料庫時發生錯誤,無法查詢用戶事件清單" . $mysqli->error);
     $user_list = $user_list->fetch_assoc();
     $schedule_list = $user_list['schedule_index'];
-    $schedule_list = $schedule_list .',' .$Index_schedule ;
+    if($schedule_list == ''){
+        $schedule_list = $Index_schedule;
+    }
+    else{
+        $schedule_list = $schedule_list .',' .$Index_schedule ;
+    }
+
+//     $schedule_list = $schedule_list .',' .$Index_schedule ;
     $sql = "UPDATE `user_list` SET `schedule_index` = '{$schedule_list}' WHERE `user_id` = '{$user_id}'";
     $result = $mysqli->query($sql) or die("在更新資料庫時發生錯誤,無法更新用戶清單" . $mysqli->error);
     if(!$result){

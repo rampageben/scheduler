@@ -29,8 +29,13 @@
         $sql = "SELECT `schedule_index` FROM `user_list` WHERE `user_id` = '{$user_id}'";
         $result= $mysqli->query($sql) or die("在查詢資料庫時發生錯誤,找不到用戶做事清單" . $mysqli->error);
         $user_schedule = $result->fetch_assoc();
+
+        if($user_schedule['schedule_index'] == ''){
+            return;
+        }
         $user_schedule = explode(",",$user_schedule['schedule_index']);
         $k = 0;
+//         echo count($user_schedule);
 
         for($i = 0;$i<count($user_schedule);$i++){
             $sql = "SELECT * FROM `dolist` WHERE `Index_schedule` = '{$user_schedule[$i]}'";
