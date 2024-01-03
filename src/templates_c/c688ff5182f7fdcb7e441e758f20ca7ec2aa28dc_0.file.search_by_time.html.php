@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2023-12-30 06:52:42
+/* Smarty version 3.1.34-dev-7, created on 2024-01-03 11:36:45
   from 'D:\scheduler\src\templates\search_by_time.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_658fbe3ae58466_23953653',
+  'unifunc' => 'content_6594d64d719d21_71868941',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c688ff5182f7fdcb7e441e758f20ca7ec2aa28dc' => 
     array (
       0 => 'D:\\scheduler\\src\\templates\\search_by_time.html',
-      1 => 1703919144,
+      1 => 1704253003,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_658fbe3ae58466_23953653 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6594d64d719d21_71868941 (Smarty_Internal_Template $_smarty_tpl) {
 ?><h2>依時間搜尋</h2>
 <br>
 <form action="show_by_time.php" class="form-horizontal" id="user_form" method="POST">
@@ -156,9 +156,9 @@ function content_658fbe3ae58466_23953653 (Smarty_Internal_Template $_smarty_tpl)
         <thead>
         <h2>結果</h2>
         <tr>
-            <th>標題</th>
-            <th>地點</th>
+            <th>名稱</th>
             <th>內容</th>
+            <th>地點</th>
             <th>起始時間</th>
             <th>結束時間</th>
             <th>狀態</th>
@@ -173,9 +173,9 @@ foreach ($_from as $_smarty_tpl->tpl_vars['thing_a']->value) {
         <tr>
             <td><?php echo $_smarty_tpl->tpl_vars['thing_a']->value['title'];?>
 </td>
-            <td><?php echo $_smarty_tpl->tpl_vars['thing_a']->value['location'];?>
-</td>
             <td><?php echo $_smarty_tpl->tpl_vars['thing_a']->value['content'];?>
+</td>
+            <td><?php echo $_smarty_tpl->tpl_vars['thing_a']->value['location'];?>
 </td>
             <td><?php echo $_smarty_tpl->tpl_vars['thing_a']->value['begin_date_time'];?>
 </td>

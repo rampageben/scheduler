@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2023-12-24 08:02:47
+/* Smarty version 3.1.34-dev-7, created on 2024-01-03 11:37:32
   from 'D:\scheduler\src\templates\change_show.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_6587e5a761c2f0_79573619',
+  'unifunc' => 'content_6594d67ce92528_79359445',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5bcaa73296e56e95e6b05e1e839d5cd5ef765930' => 
     array (
       0 => 'D:\\scheduler\\src\\templates\\change_show.html',
-      1 => 1703404962,
+      1 => 1704253051,
       2 => 'file',
     ),
   ),
@@ -20,15 +20,15 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6587e5a761c2f0_79573619 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6594d67ce92528_79359445 (Smarty_Internal_Template $_smarty_tpl) {
 ?><table class="table">
     <thead>
     <tr>
         <th>名稱</th>
         <th>內容</th>
-        <th>開始時間</th>
-        <th>結束時間</th>
         <th>地點</th>
+        <th>起始時間</th>
+        <th>結束時間</th>
         <th>是否執行</th>
         <th>刪除</th>
 
@@ -45,11 +45,11 @@ foreach ($_from as $_smarty_tpl->tpl_vars['event']->value) {
 </td>
         <td><?php echo $_smarty_tpl->tpl_vars['event']->value['content'];?>
 </td>
+        <td><?php echo $_smarty_tpl->tpl_vars['event']->value['location'];?>
+</td>
         <td><?php echo $_smarty_tpl->tpl_vars['event']->value['begin_date_time'];?>
 </td>
         <td><?php echo $_smarty_tpl->tpl_vars['event']->value['finish_date_time'];?>
-</td>
-        <td><?php echo $_smarty_tpl->tpl_vars['event']->value['location'];?>
 </td>
         <td><?php if ($_smarty_tpl->tpl_vars['event']->value['state'] == 1) {?>
             是

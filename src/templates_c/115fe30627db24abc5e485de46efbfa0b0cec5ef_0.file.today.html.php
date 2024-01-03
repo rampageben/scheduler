@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2023-12-30 20:00:03
+/* Smarty version 3.1.34-dev-7, created on 2024-01-03 11:37:49
   from 'D:\scheduler\src\templates\today.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_659006437452a0_14402552',
+  'unifunc' => 'content_6594d68d825c65_40550236',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '115fe30627db24abc5e485de46efbfa0b0cec5ef' => 
     array (
       0 => 'D:\\scheduler\\src\\templates\\today.html',
-      1 => 1703922143,
+      1 => 1704253068,
       2 => 'file',
     ),
   ),
@@ -20,16 +20,18 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_659006437452a0_14402552 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6594d68d825c65_40550236 (Smarty_Internal_Template $_smarty_tpl) {
 if (isset($_smarty_tpl->tpl_vars['schedule']->value)) {?>
+<h2>今日行程</h2>
+<br>
 <table class="table">
     <thead>
     <tr>
         <th>名稱</th>
         <th>內容</th>
-        <th>開始時間</th>
-        <th>結束時間</th>
         <th>地點</th>
+        <th>起始時間</th>
+        <th>結束時間</th>
         <th>是否完成</th>
         <th>完成切換</th>
     </tr>

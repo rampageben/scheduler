@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2023-12-30 12:00:40
+/* Smarty version 3.1.34-dev-7, created on 2024-01-03 11:34:46
   from 'D:\scheduler\src\templates\show_schedule_unfinished.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_65900668c3cab8_66901984',
+  'unifunc' => 'content_6594d5d6bf6902_45899345',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '8a57842ea54e29d1f4a836e11baeb96e442f46fc' => 
     array (
       0 => 'D:\\scheduler\\src\\templates\\show_schedule_unfinished.html',
-      1 => 1703922143,
+      1 => 1704252886,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_65900668c3cab8_66901984 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6594d5d6bf6902_45899345 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 
     <table class="table">
@@ -28,7 +28,7 @@ function content_65900668c3cab8_66901984 (Smarty_Internal_Template $_smarty_tpl)
         <h2>未完成清單</h2>
         <tr>
             <!--            改-->
-            <th>標題</th>
+            <th>名稱</th>
             <th>內容</th>
             <th>地點</th>
             <th>起始時間</th>

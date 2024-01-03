@@ -3,9 +3,9 @@
     <tr>
         <th>名稱</th>
         <th>內容</th>
-        <th>開始時間</th>
-        <th>結束時間</th>
         <th>地點</th>
+        <th>起始時間</th>
+        <th>結束時間</th>
         <th>是否執行</th>
         <th>刪除</th>
 
@@ -16,9 +16,9 @@
     <tr>
         <td>{$event.title}</td>
         <td>{$event.content}</td>
+        <td>{$event.location}</td>
         <td>{$event.begin_date_time}</td>
         <td>{$event.finish_date_time}</td>
-        <td>{$event.location}</td>
         <td>{if $event.state == 1}
             是
             {else}

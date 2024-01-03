@@ -33,6 +33,8 @@ function show_search(){
     $user_list = splitStringToArray($user_list);
     $k = 0;
     $today = date("Y-m-d H:i");
+
+
     for ($i = 0; $i < count($user_list); $i++) {
         $sql = "SELECT * FROM `dolist` WHERE `Index_schedule` = '{$user_list[$i]}'";
         $result= $mysqli->query($sql) or die("在查詢資料庫時發生錯誤,找不到做事清單" . $mysqli->error);
@@ -109,5 +111,6 @@ function number2time($year,$month, $day, $hour, $minute){
     $time = date("Y-m-d H:i",mktime($hour, $minute, 0, $month, $day, $year));
     return $time;
 }
+
 
 ?>
