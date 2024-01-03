@@ -133,7 +133,7 @@
                 </div>
                 {else if $op=="change"&& $isuser!=false}
                 {include file='change.html'}
-                {if isset($schedule)}
+                {if isset($schedule)&& $schedule != ''}
                 {include file='change_show.html'}
                 {/if}
                 {else if $op=="add"&& $isuser!=false}

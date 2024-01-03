@@ -12,9 +12,9 @@ if ($isuser == false) {
     show_search();
     if($chose_id!=''){
         delevent($chose_id);
-        show_search();
-         $op = 'change';
-        $smarty->assign('op',$op);
+
+//          $op = 'change';
+//         $smarty->assign('op',$op);
     }
 }
 
@@ -78,6 +78,8 @@ function show_search(){
     if(isset($schedule)){
         $smarty->assign('schedule', $schedule);
     }else{
+        $schedule = '';
+        $smarty->assign('schedule', $schedule);
         if(isset($schedule)){
         unset($schedule);
         }
@@ -97,6 +99,9 @@ function delevent($chose_id){
     $result= $mysqli->query($sql) or die("在查詢資料庫時發生錯誤,找不到用戶做事清單" . $mysqli->error);
     $result = $result->fetch_assoc();
     $user_list = $result['schedule_index'];
+//     if($user_list == ''){
+//         return;
+//     }
     $user_list = splitStringToArray($user_list);
 
     if(in_array($chose_id, $user_list)){
@@ -110,7 +115,8 @@ function delevent($chose_id){
         $msgsuccess = '刪除成功';
         $smarty->assign('msgsuccess', $msgsuccess );
         $chose_id = '';
-
+        $smarty->assign('chose_id', $chose_id );
+        show_search();
     }else{
         $msgdanger = '刪除失敗';
         $smarty->assign('msgdanger', $msgdanger );

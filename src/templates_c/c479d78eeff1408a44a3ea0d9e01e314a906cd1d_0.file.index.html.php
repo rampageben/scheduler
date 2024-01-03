@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2024-01-03 12:54:34
+/* Smarty version 3.1.34-dev-7, created on 2024-01-03 13:13:03
   from 'D:\scheduler\src\templates\index.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_6594e88a8a2726_77466020',
+  'unifunc' => 'content_6594ecdf926493_15252254',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c479d78eeff1408a44a3ea0d9e01e314a906cd1d' => 
     array (
       0 => 'D:\\scheduler\\src\\templates\\index.html',
-      1 => 1704257672,
+      1 => 1704258781,
       2 => 'file',
     ),
   ),
@@ -29,7 +29,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:today.html' => 1,
   ),
 ),false)) {
-function content_6594e88a8a2726_77466020 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6594ecdf926493_15252254 (Smarty_Internal_Template $_smarty_tpl) {
 ?><html>
 
 <head>
@@ -182,7 +182,7 @@ function content_6594e88a8a2726_77466020 (Smarty_Internal_Template $_smarty_tpl)
                 <?php } elseif ($_smarty_tpl->tpl_vars['op']->value == "change" && $_smarty_tpl->tpl_vars['isuser']->value != false) {?>
                 <?php $_smarty_tpl->_subTemplateRender('file:change.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
-                <?php if (isset($_smarty_tpl->tpl_vars['schedule']->value)) {?>
+                <?php if (isset($_smarty_tpl->tpl_vars['schedule']->value) && $_smarty_tpl->tpl_vars['schedule']->value != '') {?>
                 <?php $_smarty_tpl->_subTemplateRender('file:change_show.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
                 <?php }?>
